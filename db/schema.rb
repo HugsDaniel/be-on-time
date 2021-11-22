@@ -10,10 +10,84 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_152445) do
+ActiveRecord::Schema.define(version: 2021_11_22_171726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bus_stops", force: :cascade do |t|
+    t.bigint "route_id", null: false
+    t.string "name"
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["route_id"], name: "index_bus_stops_on_route_id"
+  end
+
+  create_table "buses", force: :cascade do |t|
+    t.bigint "line_id", null: false
+    t.bigint "route_id", null: false
+    t.boolean "agent"
+    t.integer "crowd_level"
+    t.integer "noise_level"
+    t.boolean "safetiness"
+    t.integer "cleanliness_level"
+    t.integer "bad_smell_level"
+    t.integer "star_bus_id"
+    t.string "star_destination"
+    t.string "star_line_short_name"
+    t.float "star_longitude"
+    t.float "star_latitude"
+    t.integer "star_line_id"
+    t.integer "star_direction_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["line_id"], name: "index_buses_on_line_id"
+    t.index ["route_id"], name: "index_buses_on_route_id"
+  end
+
+  create_table "itineraries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "starting_point"
+    t.string "end_point"
+    t.time "departing_time"
+    t.time "arrival_time"
+    t.boolean "favorite"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_itineraries_on_user_id"
+  end
+
+  create_table "itinerary_buses", force: :cascade do |t|
+    t.bigint "itinerary_id", null: false
+    t.bigint "bus_id", null: false
+    t.string "starting_point"
+    t.string "end_point"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bus_id"], name: "index_itinerary_buses_on_bus_id"
+    t.index ["itinerary_id"], name: "index_itinerary_buses_on_itinerary_id"
+  end
+
+  create_table "lines", force: :cascade do |t|
+    t.integer "star_line_id"
+    t.string "star_short_name"
+    t.string "star_long_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.text "route_json"
+    t.string "star_route_id"
+    t.integer "star_line_id"
+    t.integer "star_direction_code"
+    t.bigint "line_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["line_id"], name: "index_routes_on_line_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +101,11 @@ ActiveRecord::Schema.define(version: 2021_11_22_152445) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bus_stops", "routes"
+  add_foreign_key "buses", "lines"
+  add_foreign_key "buses", "routes"
+  add_foreign_key "itineraries", "users"
+  add_foreign_key "itinerary_buses", "buses"
+  add_foreign_key "itinerary_buses", "itineraries"
+  add_foreign_key "routes", "lines"
 end
