@@ -12,8 +12,14 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <div id="map"
+      style="width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            z-index: -1;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
     <%= yield %>
   </body>
