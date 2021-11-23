@@ -1,0 +1,40 @@
+.itineraries--info {
+  width:100%;
+  background-color:$white;
+  border-radius:15px 15px 0 0;
+  position:fixed;
+  bottom:0;
+  height:380px;
+  padding-top: $base-spacing;
+
+  .itineraries--summary {
+    font-size:18px;
+  }
+  .sub-info {
+    color:$grey;
+  }
+
+  .line-logo{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    margin-bottom: 4px;
+  }
+
+}
+
+h2{
+  font-size: 1rem;
+}
+
+.trip-step{
+  h2 {
+    font-family: $UIfont-bold;
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-family: $UIfont;
+    font-size: 0.75rem;
+  }
+}
