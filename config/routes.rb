@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'trips/show'
+  get 'buses/show'
+  get 'itineraries/index'
+  get 'itineraries/show'
+  get 'itineraries/favorites'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
