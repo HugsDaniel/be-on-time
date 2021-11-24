@@ -1,20 +1,12 @@
 <div id="map">
-  <div class="container">
-    <div class="itineraries">
-      <input type="text" placeholder="Départ" class="form-control w-100">
-      <div class="arrival d-flex">
-        <input type="text" placeholder="Arrivée" class="form-control w-100">
-        <div class="btn btn-primary">Go</div>
-      </div>
-    </div>
-  </div>
+  <div class="exit-btn"> </div>
 
   <div class="intinerary-infos">
     <div class="line-logo-big">
 
       <button class="btn-line-big">C1</button>
 
-      <button class="btn-expand"> X </button>
+      <button class="btn-expand"> ^ </button>
     </div>
 
     <div class="direction-terminus">
@@ -27,7 +19,7 @@
   <div class="container">
     <div class="bus-infos d-flex">
       <div class="left-info">
-        <img src="../assets/images/icons/bus.svg" alt="bus_logo">
+        <%= image_tag("bus.svg")%>
         <span class="bus-to-stop">08 min</span>
       </div>
       <div class="right-info">

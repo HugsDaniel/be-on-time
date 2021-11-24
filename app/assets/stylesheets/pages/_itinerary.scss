@@ -38,6 +38,10 @@ h2 {
   }
 }
 
+.in-bus-btn {
+  font-size: 1.2rem;
+}
+
 .intinerary-infos {
   width:100%;
   background-color:$white;
@@ -49,10 +53,10 @@ h2 {
 }
 
 .btn-line-big {
-  width: 50px; height: 50px;
+  width: 55px; height: 55px;
   border-radius: 50%;
   position: absolute;
-  top: -16px;
+  top: -32px;
   left: 12px;
 }
 
@@ -75,7 +79,7 @@ h2 {
 
 .direction-terminus {
   margin-top: -1rem;
-  margin-left: 4rem;
+  margin-left: 4.5rem;
   font-size: 18px;
 
 }
@@ -83,10 +87,23 @@ h2 {
 .bus-infos {
   width:auto;
   margin-top:1rem;
-  margin-bottom: 1rem;
+  margin-bottom: -1rem;
   justify-content: space-between;
+  align-items: center;
 
   .active {
     color:$warning;
   }
+}
+
+.left-info {
+  display: block ruby;
+}
+
+.exit-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: white;
+align-content: center;
+position: absolute; top: 12px; right: 12px
 }
