@@ -6,4 +6,29 @@
     background-color: $primary;
     width: 83px;
     height: 83px;
+    z-index: 1;
+}
+
+.menu {
+    position: absolute;
+    bottom: -22.735vh;
+    right: -22.735vh;
+    border-radius: 50%;
+    background-color: #47B1FF;
+    width: 25rem;
+    height: 25rem;
+    opacity: 0.5;
+    z-index: 0;
+    .bell {
+        height: 53px;
+        position: relative;
+        top: 3rem;
+        left: 8rem;
+    }
+    .signoutsvg {
+        height: 50px;
+        position: relative;
+        top: 8rem;
+        left: -0.3rem;
+    }
 }
