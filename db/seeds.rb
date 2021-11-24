@@ -136,3 +136,88 @@ buses.each do |bus|
   new_bus.save
 end
 puts "Done !"
+
+bus_53 = Bus.new(
+  star_bus_id: -1006393600,
+  star_destination: "République",
+  star_line_short_name: "53",
+  star_longitude: -1.753324,
+  star_latitude: 48.119246,
+  star_line_id: 0053,
+  star_direction_code: 0
+  )
+bus_53.route = Route.find_by(star_route_id: "0053-B-4267-1167")
+bus_53.line = Line.find_by(star_line_id: "53")
+bus_53.save!
+
+bus_157 = Bus.new(
+  star_bus_id: -1006393600,
+  star_destination: "Bruz Centre",
+  star_line_short_name: "157ex",
+  star_longitude: -1.679767,
+  star_latitude: 48.109326,
+  star_line_id: 0157,
+  star_direction_code: 0
+)
+bus_157.route = Route.find_by(star_route_id: "0157-A-1501-2361")
+bus_157.line = Line.find_by(star_line_id: "157ex")
+bus_157.save!
+
+# Create itineraries
+
+print "Creating itineraries"
+
+itinerary = Itinerary.new(
+  starting_point: "2 Square de la Fée Viviane 35000 Rennes",
+  end_point: "Republique 35000 Rennes",
+  favorite: true
+)
+
+itinerary.user = user
+itinerary.save!
+
+itinerary_two = Itinerary.new(
+  starting_point: "Plélo Colombier 35000 Rennes",
+  end_point: "2 Av de Ker Lann 35170 Bruz",
+  favorite: false
+)
+
+itinerary_two.user = user_two
+itinerary_two.save!
+
+itinerary_three = Itinerary.new(
+  starting_point: "18 Rue de Bertrand, 35000 Rennes",
+  end_point: "1 Sq. du Chêne Germain, 35510 Cesson-Sévigné",
+  favorite: false
+)
+
+itinerary_three.user = user_three
+itinerary_three.save!
+
+# Create itineraries_buses
+
+print "Creating itinerary_buses"
+
+it_bus = ItineraryBus.new(
+  starting_point: "2 Square de la Fée Viviane 35000 Rennes",
+  end_point: "Republique 35000 Rennes"
+)
+it_bus.itinerary = itinerary
+it_bus.bus = bus_53
+it_bus.save!
+
+it_bus_two = ItineraryBus.new(
+  starting_point: "Plélo Colombier 35000 Rennes",
+  end_point: "2 Av de Ker Lann 35170 Bruz"
+)
+it_bus_two.itinerary = itinerary_two
+it_bus_two.bus = bus_157
+it_bus_two.save!
+
+it_bus_two = ItineraryBus.new(
+  starting_point: "18 Rue de Bertrand, 35000 Rennes",
+  end_point: "1 Sq. du Chêne Germain, 35510 Cesson-Sévigné"
+)
+it_bus_two.itinerary = itinerary_three
+it_bus_two.bus = Bus.find_by(star_bus_id: 1652948424)
+it_bus_two.save!
