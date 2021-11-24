@@ -8,7 +8,7 @@
 .bs-phrase {
     text-align: center;
     color: white;
-    font-weight: ligth;
+    font-weight: ligth ;
     font-size: 1.2rem;
 }
 
@@ -16,7 +16,21 @@
     background-color: $blue;
 }
 
+.text-white {
+    color:white;
+}
+
 .container {
     margin: auto 0;
     padding: 10vh;
+}
+
+.login-form {
+    border: 2px solid white;
+    border-radius: 25px;
+    color: white;
+}
+
+.login-form:focus {
+    background-color: $blue;
 }

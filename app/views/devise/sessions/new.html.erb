@@ -4,19 +4,19 @@
     <h2 class="bs-phrase">Discover the best way to be on time.</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs">
+      <div class="form-inputs text-white">
         <%= f.input :email,
                     required: false,
                     autofocus: true,
-                    input_html: { autocomplete: "email" } %>
+                    input_html: {class: "login-form blue ", autocomplete: "email" } %>
         <%= f.input :password,
                     required: false,
-                    input_html: { autocomplete: "current-password" } %>
+                    input_html: {class: "login-form blue", autocomplete: "current-password" } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Log in" %>
+        <%= f.button :submit, "Log in", class: "btn-white" %>
       </div>
     <% end %>
 
