@@ -13,7 +13,8 @@
 }
 
 .blue {
-    background-color: $blue;
+    background-color: $primary;
+    height: 100%;
 }
 
 .text-white {
@@ -33,4 +34,8 @@
 
 .login-form:focus {
     background-color: $blue;
+}
+
+.background-full {
+    height:100vh;
 }
