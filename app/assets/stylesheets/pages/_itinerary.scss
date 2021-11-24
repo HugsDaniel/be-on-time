@@ -20,10 +20,9 @@
     border-radius:50%;
     margin-bottom: 4px;
   }
-
 }
 
-h2{
+h2 {
   font-size: 1rem;
 }
 
@@ -36,5 +35,58 @@ h2{
   h3 {
     font-family: $UIfont;
     font-size: 0.75rem;
+  }
+}
+
+.intinerary-infos {
+  width:100%;
+  background-color:$white;
+  border-radius:15px 15px 0 0;
+  position:fixed;
+  bottom:0;
+  height:150px;
+  padding-top: $base-spacing;
+}
+
+.btn-line-big {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: -16px;
+  left: 12px;
+}
+
+.btn-expand {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: -16px;
+  right: 12px;
+}
+
+
+.container-iti-infos {
+  width:90%;
+}
+
+.direction {
+  color: $grey;
+}
+
+.direction-terminus {
+  margin-top: -1rem;
+  margin-left: 4rem;
+  font-size: 18px;
+
+}
+
+.bus-infos {
+  width:auto;
+  margin-top:1rem;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+
+  .active {
+    color:$warning;
   }
 }

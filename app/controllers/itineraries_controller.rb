@@ -4,7 +4,7 @@ class ItinerariesController < ApplicationController
   end
 
   def show
-    @itinerary = Itinerary.find([:id])
+    @itinerary = Itinerary.find(params[:id])
   end
 
   def favorites
