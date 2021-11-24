@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_130503) do
+ActiveRecord::Schema.define(version: 2021_11_23_151012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 2021_11_23_130503) do
     t.bigint "line_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "departure_stop"
+    t.string "arrival_stop"
     t.index ["line_id"], name: "index_routes_on_line_id"
   end
 
