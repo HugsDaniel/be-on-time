@@ -1,2 +1,90 @@
-<h1>Itineraries#index</h1>
-<p>Find me in app/views/itineraries/index.html.erb</p>
+<div id="map">
+  <div class="container">
+    <div class="itineraries">
+      <input type="text" placeholder="Départ" class="form-control w-100">
+      <div class="arrival d-flex">
+        <input type="text" placeholder="Arrivée" class="form-control w-100">
+        <div class="btn btn-primary">Go</div>
+      </div>
+    </div>
+  </div>
+
+
+<%# BARRES DE RECHERCHES %>
+  <div class="itineraries--info">
+    <div class="container">
+      <div class="itineraries--summary d-flex flex-column mb-4">
+        <div class="summary--departure d-inline-flex align-items-center">
+          <i class="fas fa-eye mr-2"></i>
+          <span> <span class="sub-info">Départ</span> 18 Rue Frederic Sacher</span>
+        </div>
+
+        <i class="fas fa-eye mr-2 align-items-start align-items-center"></i>
+
+        <div class="summary--arrival d-inline-flex align-items-center">
+          <i class="fas fa-eye mr-2"></i>
+          <span> <span class="sub-info">Arrivée</span> Place de Bretagne</span>
+        </div>
+      </div>
+
+      <div class="trip-option">
+        <h2>Itinéraire 1</h2>
+        <div class="trip d-flex justify-content-between">
+          <div class="trip-step ">
+            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
+            <h3>gros chêne</h3>
+            <h2>8 min</h2>
+
+          </div>
+
+          <div class="trip-step">
+            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
+            <h3>gros chêne</h3>
+            <h2>8 min</h2>
+          </div>
+
+          <div class="trip-step">
+            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
+            <h3>gros chêne</h3>
+            <h2>8 min</h2>
+          </div>
+
+        <div class="trip-detail-button align-self-center">
+          <button>details</button>
+        </div>
+       </div>
+      </div>
+
+      <div class="trip-option">
+        <h2>Itinéraire 2</h2>
+        <div class="trip d-flex justify-content-between">
+          <div class="trip-step ">
+            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
+            <h3>gros chêne</h3>
+            <h2>8 min</h2>
+
+          </div>
+
+          <div class="trip-step">
+            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
+            <h3>gros chêne</h3>
+            <h2>8 min</h2>
+          </div>
+
+          <div class="trip-step">
+            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
+            <h3>gros chêne</h3>
+            <h2>8 min</h2>
+          </div>
+
+        <div class="trip-detail-button align-self-center">
+          <button>details</button>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+ </div>
+
+<%# INFORMATION SUR LA LISTE DES OPTIONS D'ITINERAIRES %>
+
