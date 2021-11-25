@@ -1,2 +1,22 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<div class="bus-info info-active">
+    <div class="status-container">
+    <%= simple_form_for @bus do |f| %>
+        <div class="status-ligne">
+             <%= f.input  :agent, input_html: {class: 'bus-status'}, label: " "%>
+            <div class="bus-status"></div>
+        </div>
+        <div class="status-ligne">
+            <div class="bus-status"></div>
+            <div class="bus-status"></div>
+        </div>
+        <div class="status-ligne">
+            <div class="bus-status"></div>
+            <div class="bus-status"></div>
+    <% end %>
+        </div>
+    </div>
+</div>
+
+<div id="info-btn" class="profile"><div class="info">i</div></div>
+
+ 

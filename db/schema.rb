@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 2021_11_23_151012) do
     t.bigint "line_id", null: false
     t.bigint "route_id", null: false
     t.boolean "agent"
-    t.integer "crowd_level"
-    t.integer "noise_level"
-    t.boolean "safetiness"
-    t.integer "cleanliness_level"
-    t.integer "bad_smell_level"
+    t.integer "crowd_level" #
+    t.integer "noise_level" #
+    t.boolean "safetiness" 
+    t.integer "cleanliness_level" #
+    t.integer "bad_smell_level" #
     t.integer "star_bus_id"
     t.string "star_destination"
     t.string "star_line_short_name"
