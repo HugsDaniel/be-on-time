@@ -48,9 +48,27 @@ h2 {
   border-radius:15px 15px 0 0;
   position:fixed;
   bottom:0;
-  height:150px;
-  padding-top: $base-spacing;
+  padding: $base-spacing 0;
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
 }
+
+// Collapse anim
+
+.itinerary-collapse {
+  transform:translateY(120px);
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
+}
+
+.btn-rotate {
+  transform:rotate(180deg);
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
+}
+
+
+// End
 
 .btn-line-big {
   width: 55px; height: 55px;
@@ -58,6 +76,12 @@ h2 {
   position: absolute;
   top: -32px;
   left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $UIfont-bold;
+  font-size: 100%;
+
 }
 
 .btn-expand {
@@ -66,6 +90,13 @@ h2 {
   position: absolute;
   top: -16px;
   right: 12px;
+  border: 1px solid $light-grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
 }
 
 
@@ -90,11 +121,26 @@ h2 {
   margin-bottom: -1rem;
   justify-content: space-between;
   align-items: center;
+  padding: 16px;
+  border-bottom : 1px solid $light-grey;
 
   .active {
-    color:$warning;
+    color:$primary;
   }
 }
+
+.bus-status img:not(:last-child) {
+  margin-right:10px;
+}
+
+.bus-info {
+  border: solid 1px $light-grey;
+}
+
+.bus-to-stop {
+  color: $light-grey;
+}
+
 
 .left-info {
   display: block ruby;
@@ -104,6 +150,15 @@ h2 {
   width: 36px; height: 36px;
   border-radius: 50%;
   background: white;
-align-content: center;
+  display:flex;
+  justify-content: center;
+align-items: center;
 position: absolute; top: 12px; right: 12px
+}
+
+
+.btn-block{
+  font-family: $UIfont;
+  font-size: 1.5rem;
+  padding: 5px;
 }
