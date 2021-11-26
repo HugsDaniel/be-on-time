@@ -40,3 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   toggleMenu();
   changeStatus();
 })
+
+import "controllers"

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_11_25_145633) do
+=======
+ActiveRecord::Schema.define(version: 2021_11_26_105818) do
+>>>>>>> origin
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +30,6 @@ ActiveRecord::Schema.define(version: 2021_11_25_145633) do
   end
 
   create_table "buses", force: :cascade do |t|
-    t.bigint "line_id", null: false
-    t.bigint "route_id", null: false
     t.boolean "agent"
     t.boolean "safetiness"
     t.integer "star_bus_id"
@@ -39,23 +41,28 @@ ActiveRecord::Schema.define(version: 2021_11_25_145633) do
     t.integer "star_direction_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+<<<<<<< HEAD
     t.boolean "crowd_level"
     t.boolean "noise_level"
     t.boolean "cleanliness_level"
     t.boolean "bad_smell_level"
     t.index ["line_id"], name: "index_buses_on_line_id"
     t.index ["route_id"], name: "index_buses_on_route_id"
+=======
+>>>>>>> origin
   end
 
   create_table "itineraries", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "starting_point"
     t.string "end_point"
-    t.time "departing_time"
-    t.time "arrival_time"
     t.boolean "favorite"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "departing_time"
+    t.datetime "arrival_time"
     t.index ["user_id"], name: "index_itineraries_on_user_id"
   end
 
@@ -66,6 +73,8 @@ ActiveRecord::Schema.define(version: 2021_11_25_145633) do
     t.string "end_point"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "departing_time"
+    t.datetime "arrival_time"
     t.index ["bus_id"], name: "index_itinerary_buses_on_bus_id"
     t.index ["itinerary_id"], name: "index_itinerary_buses_on_itinerary_id"
   end
@@ -105,8 +114,6 @@ ActiveRecord::Schema.define(version: 2021_11_25_145633) do
   end
 
   add_foreign_key "bus_stops", "routes"
-  add_foreign_key "buses", "lines"
-  add_foreign_key "buses", "routes"
   add_foreign_key "itineraries", "users"
   add_foreign_key "itinerary_buses", "buses"
   add_foreign_key "itinerary_buses", "itineraries"
