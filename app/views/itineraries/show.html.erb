@@ -36,7 +36,9 @@
                 </div>
           </div>
         </div>
-      <div class="mt-3 btn btn-primary btn-block btn-fade">I'm in the bus</div>
+      <%= link_to trip_path(@itinerary) do %>  
+        <div class="mt-3 btn btn-primary btn-block btn-fade">I'm in the bus</div>
+      <% end %>  
     </div>
     <%# End %>
 
