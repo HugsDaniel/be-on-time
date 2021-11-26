@@ -20,10 +20,9 @@
     border-radius:50%;
     margin-bottom: 4px;
   }
-
 }
 
-h2{
+h2 {
   font-size: 1rem;
 }
 
@@ -37,4 +36,129 @@ h2{
     font-family: $UIfont;
     font-size: 0.75rem;
   }
+}
+
+.in-bus-btn {
+  font-size: 1.2rem;
+}
+
+.intinerary-infos {
+  width:100%;
+  background-color:$white;
+  border-radius:15px 15px 0 0;
+  position:fixed;
+  bottom:0;
+  padding: $base-spacing 0;
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
+}
+
+// Collapse anim
+
+.itinerary-collapse {
+  transform:translateY(120px);
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
+}
+
+.btn-rotate {
+  transform:rotate(180deg);
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
+}
+
+
+// End
+
+.btn-line-big {
+  width: 55px; height: 55px;
+  border-radius: 50%;
+  position: absolute;
+  top: -32px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $UIfont-bold;
+  font-size: 100%;
+
+}
+
+.btn-expand {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: -16px;
+  right: 12px;
+  border: 1px solid $light-grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  transition:.25s;
+  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
+}
+
+
+.container-iti-infos {
+  width:90%;
+}
+
+.direction {
+  color: $grey;
+}
+
+.direction-terminus {
+  margin-top: -1rem;
+  margin-left: 4.5rem;
+  font-size: 18px;
+
+}
+
+.bus-infos {
+  width:auto;
+  margin-top:1rem;
+  margin-bottom: -1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom : 1px solid $light-grey;
+
+  .active {
+    color:$primary;
+  }
+}
+
+.bus-status img:not(:last-child) {
+  margin-right:10px;
+}
+
+.bus-info {
+  border: solid 1px $light-grey;
+}
+
+.bus-to-stop {
+  color: $light-grey;
+}
+
+
+.left-info {
+  display: block ruby;
+}
+
+.exit-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: white;
+  display:flex;
+  justify-content: center;
+align-items: center;
+position: absolute; top: 12px; right: 12px
+}
+
+
+.btn-block{
+  font-family: $UIfont;
+  font-size: 1.5rem;
+  padding: 5px;
 }

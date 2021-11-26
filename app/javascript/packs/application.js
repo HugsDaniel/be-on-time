@@ -30,9 +30,15 @@ import { toggleMenu } from '../components/menu';
 
 import { initMapbox } from '../plugins/init_mapbox';
 
+import { panelTrigger } from '../animations/panel';
+
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+
+  panelTrigger();
+
   toggleMenu();
+
 })
 
 import "controllers"
