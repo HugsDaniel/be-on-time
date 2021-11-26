@@ -9,7 +9,7 @@
     z-index: 1;
 }
 
-.menu {
+.menu-main {
     position: absolute;
     bottom: -25.735vh;
     right: -25.735vh;
@@ -28,7 +28,7 @@
         position: relative;
         top: 10rem;
         left: -0.3rem;
-    } 
+    }
     // transition-delay: 2s;
     // transition: width 0.6s, height 0.6s, transform 0.6s, opacity 0.6s;
     opacity:0;
@@ -44,7 +44,7 @@
     opacity: 0.5 !important;
     z-index: 0;
     transition: width 0.6s, height 0.6s, transform 0.6s, opacity 0.6s;
-    
+
 }
 
 .profile .info {
@@ -53,7 +53,7 @@
     right: 2.2rem;
     font-size: 3rem;
     color:white;
-} 
+}
 // $radius: 15em;
 // .circle {
 //   position: absolute;
