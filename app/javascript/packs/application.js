@@ -34,11 +34,14 @@ import { changeStatus } from '../components/change_info_status';
 
 import { initMapbox } from '../plugins/init_mapbox';
 
+import { panelTrigger } from '../animations/panel';
+
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleInfo();
   toggleMenu();
   changeStatus();
+  panelTrigger();
 })
 
 import "controllers"
