@@ -23,7 +23,7 @@
         <div class="d-flex justify-content-between">
           <div class="left-info">
             <%= image_tag("bus.svg")%>
-            <span class="bus-to-stop">08 min.</span>
+            <span class="bus-to-stop"><%= arrives_after(@iti_bus.departing_time) %> min.</span>
           </div>
           <div class="right-info">
             <div class="bus-status">
@@ -39,7 +39,7 @@
     <div class="bus-infos d-flex">
       <div class="left-info">
         <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">08 min.</span>
+        <span class="bus-to-stop">15 min.</span>
       </div>
       <div class="right-info">
         <div class="bus-status">
@@ -52,7 +52,7 @@
     <div class="bus-infos d-flex">
       <div class="left-info">
         <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">08 min.</span>
+        <span class="bus-to-stop">20 min.</span>
       </div>
       <div class="right-info">
         <div class="bus-status">
