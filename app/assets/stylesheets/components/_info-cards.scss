@@ -8,11 +8,13 @@
 
 .bus-info {
     visibility: hidden;
+    padding-top: 15vh;
 }
 
 .status-ligne .form-check{
     max-width: 15vh;
     max-height: 15vh;
+    padding: 0;
 
 }
 
@@ -25,6 +27,9 @@
     transform: scale(0);
 }
 .bus-status + label{
+    svg {
+        height: 5vh;
+    }
     svg path {
         fill:$primary;
     }
@@ -34,9 +39,10 @@
     
     border-radius: 50%;
     background-color: white;
-    width: 15vh;
-    height: 15vh;
-    cursor: pointer; 
+    width: 10vh;
+    height: 10vh;
+    cursor: pointer;
+    margin: 1rem; 
     z-index: 10;  
     display:flex;
     align-items:center;
@@ -57,9 +63,7 @@
   }
 
 .status-ligne {
-    margin-top: 10vh;
-    width:300px;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
 }
 
@@ -68,12 +72,21 @@
     padding:15px;
     margin: auto 0;
     justify-content: space-around;
-    display: grid;
 }
 
 .status-active {
     // color: $primary;
     background-color: white;
+}
+
+.status-svg {
+    svg {
+    width: 24px;
+    height: 24px;
+    path {
+        fill: $warning;
+    }
+    }
 }
 
 // .bus-status {

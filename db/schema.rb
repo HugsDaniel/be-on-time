@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_11_25_145633) do
-=======
 ActiveRecord::Schema.define(version: 2021_11_26_105818) do
->>>>>>> origin
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,15 +37,10 @@ ActiveRecord::Schema.define(version: 2021_11_26_105818) do
     t.integer "star_direction_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-<<<<<<< HEAD
     t.boolean "crowd_level"
     t.boolean "noise_level"
     t.boolean "cleanliness_level"
     t.boolean "bad_smell_level"
-    t.index ["line_id"], name: "index_buses_on_line_id"
-    t.index ["route_id"], name: "index_buses_on_route_id"
-=======
->>>>>>> origin
   end
 
   create_table "itineraries", force: :cascade do |t|
