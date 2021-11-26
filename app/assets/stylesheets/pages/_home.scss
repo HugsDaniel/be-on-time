@@ -1,1 +1,8 @@
 // Specific CSS for your home-page
+
+// Tricks to avoid overflow
+body {
+    position:fixed;
+    height:100%;
+    width:100%;
+}
