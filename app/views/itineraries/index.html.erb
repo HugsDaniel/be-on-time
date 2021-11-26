@@ -20,7 +20,7 @@
           <span> <span class="sub-info starting">Départ</span> 18 Rue Frederic Sacher</span>
         </div>
 
-        <%# <i class="fas fa-eye mr-2 align-items-start align-items-center"></i> %>
+
         <%= image_tag("route.svg",style: 'width: 4px; height: 21px; margin: 5px 0px 5px 7px' )%>
 
         <div class="summary--arrival d-inline-flex align-items-center">
@@ -29,10 +29,10 @@
         </div>
       </div>
 
+<%# ########## DIV TO LOOP ############ %>
       <div class="trip-option">
         <h2>Itinéraire 1</h2>
         <div class="trip d-flex justify-content-between">
-<%# ########## DIV TO LOOP ############ %>
           <div class="trip-step ">
             <img src="#### cf itinerary show => image_tag ####" alt="" class="line-logo">
             <h3>gros chêne</h3>
@@ -52,7 +52,10 @@
           </div>
 
         <div class="trip-detail-button align-self-center">
-           <%= image_tag("details.svg")%>
+
+        <%= link_to "#" do %>
+        <%= image_tag("details.svg")%>
+        <% end %>
         </div>
        </div>
       </div>
@@ -82,7 +85,9 @@
           </div>
 
         <div class="trip-detail-button align-self-center">
+          <%= link_to "#" do %>
           <%= image_tag("details.svg")%>
+          <% end %>
         </div>
        </div>
       </div>
