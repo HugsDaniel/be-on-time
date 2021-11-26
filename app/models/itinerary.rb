@@ -1,6 +1,7 @@
 class Itinerary < ApplicationRecord
   belongs_to :user
   has_many :itinerary_buses, dependent: :destroy
+  has_many :buses, through: :itinerary_buses
 
   geocoded_by :starting_point
   geocoded_by :end_point

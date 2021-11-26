@@ -1,2 +1,66 @@
-<h1>Itineraries#show</h1>
-<p>Find me in app/views/itineraries/show.html.erb</p>
+
+<div >
+  <div class="exit-btn"> <%= image_tag("exit.svg")%> </div>
+
+  <div class="intinerary-infos itinerary-collapse">
+    <div class="line-logo-big">
+
+      <div class="btn-line-big" style="background-color:<%= @colour_line %>; font-size:<%= 64 / @star_short_name.length%>px;"> <%= @star_short_name %></div>
+
+      <div class="btn-expand btn-rotate"> <%= image_tag("expand.svg")%> </div>
+    </div>
+
+    <div class="direction-terminus">
+      <span class="direction">
+      Direction
+      </span>
+      <%= @direction%>
+    </div>
+
+  <div class="container">
+      <%# Bloc à loop %>
+      <div class="bus-infos">
+        <div class="d-flex justify-content-between">
+          <div class="left-info">
+            <%= image_tag("bus.svg")%>
+            <span class="bus-to-stop">08 min.</span>
+          </div>
+          <div class="right-info">
+            <div class="bus-status">
+              <%= image_tag("noise.svg")%>
+              <%= image_tag("agent.svg")%>
+            </div>
+          </div>
+        </div>
+      <div class="mt-3 btn btn-primary btn-block btn-fade">I'm in the bus</div>
+    </div>
+    <%# End %>
+
+    <div class="bus-infos d-flex">
+      <div class="left-info">
+        <%= image_tag("bus.svg")%>
+        <span class="bus-to-stop">08 min.</span>
+      </div>
+      <div class="right-info">
+        <div class="bus-status">
+          <%= image_tag("noise.svg")%>
+          <%= image_tag("smell.svg")%>
+        </div>
+      </div>
+    </div>
+
+    <div class="bus-infos d-flex">
+      <div class="left-info">
+        <%= image_tag("bus.svg")%>
+        <span class="bus-to-stop">08 min.</span>
+      </div>
+      <div class="right-info">
+        <div class="bus-status">
+          <%= image_tag("agent.svg")%>
+          <%= image_tag("noise.svg")%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

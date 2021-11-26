@@ -50,7 +50,9 @@ class FetchItineraryService
         starting_point: @depart,
         end_point: @arrivee,
         departing_time: Time.parse(passaged['fields']['arrivee']).localtime("+01:00"),
-        arrival_time: Time.parse(result['fields']['arrivee']).localtime("+01:00")
+        arrival_time: Time.parse(result['fields']['arrivee']).localtime("+01:00"),
+        star_line_id: result['fields']['idligne'],
+        star_destination: result['fields']['destination']
       }
     end.reject(&:nil?).first(3)
     # puts "Vos résultats de recherche :"
