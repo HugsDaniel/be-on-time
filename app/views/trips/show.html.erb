@@ -1,11 +1,11 @@
 <div class="bus-info">
     <div class="status-container">
     <%= simple_form_for @bus do |f| %>
-    
+
         <div class="status-ligne">
              <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status',checked: @bus.cleanliness_level} %>
              <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status',checked: @bus.safetiness} %>
-        
+
         </div>
         <div class="status-ligne">
              <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status',checked: @bus.noise_level} %>
@@ -17,8 +17,8 @@
     <% end %>
         </div>
     </div>
-    
-    
+
+
 </div>
 
 <div id="info-btn" style="bottom: 21.265vh;" class="profile"><div class="info">i</div></div>
@@ -50,7 +50,7 @@
             <div>
               <div class="status-svg">
                 <%= @image_garbage.html_safe if (@bus.cleanliness_level)%>
-                <%= @@image_thief.html_safe if @bus.safetiness%>
+                <%= @image_thief.html_safe if @bus.safetiness%>
                 <%= @image_speaker.html_safe if @bus.noise_level%>
                 <%= @image_nose.html_safe if @bus.bad_smell_level%>
                 <%= @image_people.html_safe if  @bus.crowd_level%>
@@ -60,7 +60,7 @@
             </div>
           </div>
         </div>
-      <%= link_to itineraries_path do %>  
+      <%= link_to itineraries_path do %>
         <div class="mt-3 btn btn-primary btn-block btn-fade">I have arrived</div>
-      <% end %> 
+      <% end %>
     </div>
