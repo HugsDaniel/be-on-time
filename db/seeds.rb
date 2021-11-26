@@ -131,9 +131,9 @@ buses.each do |bus|
     star_line_id: bus['fields']['idligne'].to_i,
     star_direction_code: bus['fields']['sens'].to_i
   )
-  new_bus.route = Route.find_by(star_line_id: bus['fields']['idligne'], arrival_stop: bus['fields']['destination'])
-  new_bus.line = Line.find_by(star_line_id: bus['fields']['idligne'])
-  new_bus.save
+  # new_bus.route = Route.find_by(star_line_id: bus['fields']['idligne'], arrival_stop: bus['fields']['destination'])
+  # new_bus.line = Line.find_by(star_line_id: bus['fields']['idligne'])
+  new_bus.save!
 end
 puts "Done !"
 
@@ -146,8 +146,8 @@ bus_53 = Bus.new(
   star_line_id: 0053,
   star_direction_code: 0
   )
-bus_53.route = Route.find_by(star_route_id: "0053-B-4267-1167")
-bus_53.line = Line.find_by(star_line_id: "53")
+# bus_53.route = Route.find_by(star_route_id: "0053-B-4267-1167")
+# bus_53.line = Line.find_by(star_line_id: "53")
 bus_53.save!
 
 bus_157 = Bus.new(
@@ -159,8 +159,8 @@ bus_157 = Bus.new(
   star_line_id: 0157,
   star_direction_code: 0
 )
-bus_157.route = Route.find_by(star_route_id: "0157-A-1501-2361")
-bus_157.line = Line.find_by(star_line_id: "157ex")
+# bus_157.route = Route.find_by(star_route_id: "0157-A-1501-2361")
+# bus_157.line = Line.find_by(star_line_id: "157ex")
 bus_157.save!
 
 # Create itineraries
