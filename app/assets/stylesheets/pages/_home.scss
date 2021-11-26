@@ -1,8 +1,9 @@
 // Specific CSS for your home-page
 
 // Tricks to avoid overflow
-body {
+.home {
     position:fixed;
     height:100%;
     width:100%;
+    background-color: #999999;
 }
