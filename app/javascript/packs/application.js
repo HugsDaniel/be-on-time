@@ -34,3 +34,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleMenu();
 })
+
+import "controllers"
