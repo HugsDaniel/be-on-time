@@ -1,18 +1,19 @@
 <div class="bus-info">
     <div class="status-container">
     <%= simple_form_for @bus do |f| %>
+    
         <div class="status-ligne">
-             <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status'}%>
-             <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status'}%>
+             <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status',checked: @bus.cleanliness_level} %>
+             <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status',checked: @bus.safetiness} %>
         
         </div>
         <div class="status-ligne">
-             <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status'}%>
-             <%= f.input  :bad_smell_level, label: @image_nose.html_safe, input_html: {class: 'bus-status'}%>
+             <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status',checked: @bus.noise_level} %>
+             <%= f.input  :bad_smell_level, label: @image_nose.html_safe, input_html: {class: 'bus-status', checked: @bus.bad_smell_level} %>
         </div>
         <div class="status-ligne">
-             <%= f.input  :crowd_level, label: @image_people.html_safe, input_html: {class: 'bus-status'}%>
-             <%= f.input  :agent, label: @image_agent.html_safe, input_html: {class: 'bus-status'}%>
+             <%= f.input  :crowd_level, label: @image_people.html_safe, input_html: {class: 'bus-status',checked: @bus.crowd_level} %>
+             <%= f.input  :agent, label: @image_agent.html_safe, input_html: {class: 'bus-status',checked: @bus.agent} %>
     <% end %>
         </div>
     </div>

@@ -10,7 +10,8 @@ class TripsController < ApplicationController
     @image_nose = nose()
   end
 
-  private 
+  private
+
 
   def nose
     return '<svg width="69" height="68" viewBox="0 0 69 68" fill="none" xmlns="http://www.w3.org/2000/svg">

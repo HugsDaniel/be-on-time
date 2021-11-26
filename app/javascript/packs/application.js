@@ -28,6 +28,8 @@ import "bootstrap";
 // Internal imports, e.g:
 import { toggleInfo } from '../components/status';
 import { toggleMenu } from '../components/menu';
+import { changeStatus } from '../components/change_info_status';
+
 
 
 import { initMapbox } from '../plugins/init_mapbox';
@@ -36,4 +38,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleInfo();
   toggleMenu();
+  changeStatus();
 })
