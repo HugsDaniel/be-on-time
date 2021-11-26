@@ -1,32 +1,56 @@
 
 .info-active {
+    visibility: visible !important;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.8);
     // filter: blur(2px);
 }
 
+.bus-info {
+    visibility: hidden;
+}
+
+.status-ligne .form-check{
+    max-width: 15vh;
+    max-height: 15vh;
+
+}
+
+.status-ligne .form-group{
+    max-width: 15vh;
+    max-height: 15vh;
+
+}
 .bus-status {
     transform: scale(0);
 }
 .bus-status + label{
-    // position: absolute;
+    svg path {
+        fill:$primary;
+    }
+    box-shadow: #47b2ff2c 0px 8px 24px;
     // bottom: 2.2650056625141564vh;
     // right: 4.8vw;
-    padding: 50px;
+    
     border-radius: 50%;
     background-color: white;
     width: 15vh;
     height: 15vh;
     cursor: pointer; 
-    z-index: 10;
-    opacity: 1 !important;   
+    z-index: 10;  
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 
 .bus-status:checked + label {
     background-color: $primary;
     color: white;
-  }
+    svg path {
+        fill:white;
+    }
+}
 
 .bus-status input[type="checkbox"]:checked + label[type="checkbox"]::before {
     display: none;
@@ -36,7 +60,7 @@
     margin-top: 10vh;
     width:300px;
     justify-content: space-between;
-    display: inline-block;
+    display: flex;
 }
 
 .status-container {

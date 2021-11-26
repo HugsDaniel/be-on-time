@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_151012) do
+ActiveRecord::Schema.define(version: 2021_11_25_145633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_151012) do
     t.bigint "line_id", null: false
     t.bigint "route_id", null: false
     t.boolean "agent"
-    t.integer "crowd_level" #
-    t.integer "noise_level" #
-    t.boolean "safetiness" 
-    t.integer "cleanliness_level" #
-    t.integer "bad_smell_level" #
+    t.boolean "safetiness"
     t.integer "star_bus_id"
     t.string "star_destination"
     t.string "star_line_short_name"
@@ -43,6 +39,10 @@ ActiveRecord::Schema.define(version: 2021_11_23_151012) do
     t.integer "star_direction_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "crowd_level"
+    t.boolean "noise_level"
+    t.boolean "cleanliness_level"
+    t.boolean "bad_smell_level"
     t.index ["line_id"], name: "index_buses_on_line_id"
     t.index ["route_id"], name: "index_buses_on_route_id"
   end

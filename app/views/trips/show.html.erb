@@ -1,17 +1,18 @@
-<div class="bus-info info-active">
+<div class="bus-info">
     <div class="status-container">
     <%= simple_form_for @bus do |f| %>
         <div class="status-ligne">
-             <%= f.input  :agent, input_html: {class: 'bus-status'}, label: " "%>
-            <div class="bus-status"></div>
+             <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status'}%>
+             <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status'}%>
+        
         </div>
         <div class="status-ligne">
-            <div class="bus-status"></div>
-            <div class="bus-status"></div>
+             <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status'}%>
+             <%= f.input  :bad_smell_level, label: @image_nose.html_safe, input_html: {class: 'bus-status'}%>
         </div>
         <div class="status-ligne">
-            <div class="bus-status"></div>
-            <div class="bus-status"></div>
+             <%= f.input  :crowd_level, label: @image_people.html_safe, input_html: {class: 'bus-status'}%>
+             <%= f.input  :agent, label: @image_agent.html_safe, input_html: {class: 'bus-status'}%>
     <% end %>
         </div>
     </div>
