@@ -1,4 +1,4 @@
-<div id="map">
+<div >
   <div class="container">
     <%= form_tag itineraries_path, method: :get, html: { class: 'itineraries' }  do %>
       <%= text_field_tag :departure,
@@ -24,14 +24,19 @@
     <div class="container">
       <div class="itineraries--summary d-flex flex-column mb-4">
         <div class="summary--departure d-inline-flex align-items-center">
-          <i class="fas fa-eye mr-2"></i>
+
+           <%= image_tag("starting_point.svg")%>
+
           <span> <span class="sub-info">Départ </span><%= params[:departure] %></span>
+
         </div>
 
-        <i class="fas fa-eye mr-2 align-items-start align-items-center"></i>
+
+        <%= image_tag("route.svg",style: 'width: 4px; height: 21px; margin: 5px 0px 5px 7px' )%>
 
         <div class="summary--arrival d-inline-flex align-items-center">
-          <i class="fas fa-eye mr-2"></i>
+
+           <%= image_tag("end_point.svg")%>
           <span> <span class="sub-info">Arrivée </span><%= params[:arrival] %></span>
         </div>
       </div>
@@ -44,7 +49,7 @@
 
             <% itinerary.itinerary_buses.each do |iti_bus| %>
               <div class="trip-step ">
-                <img src="https://picsum.photos/200/300" alt="" class="line-logo">
+                <img src="#### cf itinerary show => image_tag ####" alt="" class="line-logo">
                 <h3><%= iti_bus.bus.star_line_short_name %></h3>
                 <h2><%= arrives_after(iti_bus.departing_time) %> min</h2>
               </div>
@@ -52,55 +57,34 @@
             <div class="trip-step">
               <h3><%= trip_time(itinerary.arrival_time) %></h3>
             </div>
-            <%# <div class="trip-step">
-              <img src="https://picsum.photos/200/300" alt="" class="line-logo">
-              <h3>gros chêne</h3>
-              <h2>8 min</h2>
+
+            <div class="trip-detail-button align-self-center">
+              <%= link_to "#" do %>
+              <%= image_tag("details.svg")%>
+              <% end %>
             </div>
-
-            <div class="trip-step">
-              <img src="https://picsum.photos/200/300" alt="" class="line-logo">
-              <h3>gros chêne</h3>
-              <h2>8 min</h2>
-            </div> %>
-
-            <%# <div class="trip-detail-button align-self-center">
-              <button>details</button>
-            </div> %>
-        </div>
+          </div>
         </div>
       <% end %>
-
-<%#
-      <div class="trip-option">
-        <h2>Itinéraire 2</h2>
-        <div class="trip d-flex justify-content-between">
-          <div class="trip-step ">
-            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
-            <h3>gros chêne</h3>
-            <h2>8 min</h2>
-
-          </div>
-
-          <div class="trip-step">
-            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
-            <h3>gros chêne</h3>
-            <h2>8 min</h2>
-          </div>
-
-          <div class="trip-step">
-            <img src="https://picsum.photos/200/300" alt="" class="line-logo">
-            <h3>gros chêne</h3>
-            <h2>8 min</h2>
-          </div>
-
-        <div class="trip-detail-button align-self-center">
-          <button>details</button>
-        </div>
-       </div>
-      </div> %>
-    <%# </div> %>
+    </div>
   </div>
- </div>
+<% else %>
+  <div class="bookmark">
+    <div class="star"><i class="fas fa-star"></i></div>
+  </div>
+  <div class="profile">
+    <div class="menu">
+      <%# <img src="bell.svg" alt="My Happy SVG" /> %>
+      <%= image_tag("bell.svg", class: "bell") %>
+      <%= image_tag("signout.svg", class: "signoutsvg") %>
+
+    </div>
+  </div>
 <% end %>
-<%# INFORMATION SUR LA LISTE DES OPTIONS D'ITINERAIRES %>
+<%# <div id="nav" class="wrapcircles closed">
+  <div class="circle c-1"><span><a class="link" href="#"></a></span></div>
+  <div class="circle c-2"><span><a class="link" href="#"></a></span></div>
+  <div class="circle c-3"><span><a class="link" href="https://codepen.io/Chrisstar"></a></span></div>
+  <div class="circle c-4"><span><a class="link" href="https://www.twitter.com/DaChrisstar"></a></span></div>
+  <div id="click" class="circle c-5"><span><a class="link"></a></span></div>
+</div> %>
