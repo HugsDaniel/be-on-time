@@ -17,7 +17,9 @@ class ItinerariesController < ApplicationController
       @itineraries = @itineraries_data.map do |iti|
         bus = Bus.find_or_create_by!(
           star_bus_id: iti[:bus_id],
-          star_line_short_name: iti[:bus_name]
+          star_line_short_name: iti[:bus_name],
+          star_line_id: iti[:star_line_id],
+          star_destination: iti[:star_destination]
         )
 
         itinerary = Itinerary.create!(
@@ -35,7 +37,6 @@ class ItinerariesController < ApplicationController
           end_point: itinerary.end_point,
           departing_time: iti[:departing_time],
           arrival_time: iti[:arrival_time]
-
         )
 
         itinerary
@@ -50,15 +51,11 @@ class ItinerariesController < ApplicationController
     @itinerary = Itinerary.find(params[:id])
     # @email = @itinerary.user.email
 
-        iti_bus = @itinerary.itinerary_buses.first
-        @bus= iti_bus.bus
-        @direction = @bus.star_destination
-        @star_short_name = iti_bus.bus.line.star_short_name
-        @colour_line = iti_bus.bus.line.colour
-
-
-
-
+    iti_bus = @itinerary.itinerary_buses.first
+    @bus = iti_bus.bus
+    @direction = @bus.star_destination
+    @star_short_name = @bus.star_line_short_name
+    @colour_line = Line.find_by(star_line_id: @bus[:star_line_id]).colour
 
   end
 
