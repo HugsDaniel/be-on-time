@@ -26,6 +26,10 @@ h2 {
   font-size: 1rem;
 }
 
+.line-tiny {
+  position: relative;
+}
+
 .trip-step{
   h2 {
     font-family: $UIfont-bold;
@@ -36,6 +40,12 @@ h2 {
     font-family: $UIfont;
     font-size: 0.75rem;
   }
+
+  img{
+    position: relative;
+    left: 5px;
+  }
+
 }
 
 

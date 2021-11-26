@@ -55,6 +55,7 @@ class FetchItineraryService
         star_destination: result['fields']['destination']
       }
     end.reject(&:nil?).first(3)
+
     # puts "Vos résultats de recherche :"
     # puts ""
     # results.each_with_index do |result, index|

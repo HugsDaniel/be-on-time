@@ -13,6 +13,7 @@ class ItinerariesController < ApplicationController
       @arrival = @itinerary[:end_point]
 
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
+      @colours = []
 
       @itineraries = @itineraries_data.map do |iti|
         bus = Bus.find_or_create_by!(
@@ -21,6 +22,8 @@ class ItinerariesController < ApplicationController
           star_line_id: iti[:star_line_id],
           star_destination: iti[:star_destination]
         )
+        @colours << Line.find_by(star_line_id: bus.star_line_id).colour
+
 
         itinerary = Itinerary.create!(
           user: current_user,
@@ -38,7 +41,6 @@ class ItinerariesController < ApplicationController
           departing_time: iti[:departing_time],
           arrival_time: iti[:arrival_time]
         )
-
         itinerary
       end
 
