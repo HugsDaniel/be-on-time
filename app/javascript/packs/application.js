@@ -26,7 +26,7 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import { toggleMenu } from '../components/menu';
 
 import { initMapbox } from '../plugins/init_mapbox';
 
@@ -34,5 +34,9 @@ import { panelTrigger } from '../animations/panel';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+
   panelTrigger();
+
+  toggleMenu();
+
 })
