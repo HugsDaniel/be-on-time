@@ -1,2 +1,64 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<div class="bus-info">
+    <div class="status-container">
+    <%= simple_form_for @bus do |f| %>
+    
+        <div class="status-ligne">
+             <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status',checked: @bus.cleanliness_level} %>
+             <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status',checked: @bus.safetiness} %>
+        
+        </div>
+        <div class="status-ligne">
+             <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status',checked: @bus.noise_level} %>
+             <%= f.input  :bad_smell_level, label: @image_nose.html_safe, input_html: {class: 'bus-status', checked: @bus.bad_smell_level} %>
+        </div>
+        <div class="status-ligne">
+             <%= f.input  :crowd_level, label: @image_people.html_safe, input_html: {class: 'bus-status',checked: @bus.crowd_level} %>
+             <%= f.input  :agent, label: @image_agent.html_safe, input_html: {class: 'bus-status',checked: @bus.agent} %>
+    <% end %>
+        </div>
+    </div>
+    
+    
+</div>
+
+<div id="info-btn" style="bottom: 21.265vh;" class="profile"><div class="info">i</div></div>
+
+   <div class="exit-btn"> <%= image_tag("exit.svg")%> </div>
+
+  <div class="intinerary-infos">
+    <div class="line-logo-big">
+
+      <div class="btn-line-big" style="background-color:<%= @colour_line %>; font-size:<%= 64 / @star_short_name.length%>px;"> <%= @star_short_name %></div>
+
+    </div>
+
+    <div class="direction-terminus">
+      <span class="direction">
+      Direction
+      </span>
+      <%= @direction%>
+    </div>
+
+  <div class="container">
+      <%# Bloc à loop %>
+      <div class="bus-infos" style="margin-top:0;">
+        <div class="d-flex justify-content-between">
+          <div class="left-info">
+            <%= image_tag("bus.svg")%>
+          </div>
+          <div class="right-info">
+            <div>
+              <div class="status-svg">
+                <%= @image_garbage.html_safe if (@bus.cleanliness_level)%>
+                <%= @@image_thief.html_safe if @bus.safetiness%>
+                <%= @image_speaker.html_safe if @bus.noise_level%>
+                <%= @image_nose.html_safe if @bus.bad_smell_level%>
+                <%= @image_people.html_safe if  @bus.crowd_level%>
+                <%= @image_agent.html_safe if @bus.agent%>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      <div class="mt-3 btn btn-primary btn-block btn-fade">I have arrived</div>
+    </div>
