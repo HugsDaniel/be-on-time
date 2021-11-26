@@ -27,11 +27,7 @@ ActiveRecord::Schema.define(version: 2021_11_26_105818) do
 
   create_table "buses", force: :cascade do |t|
     t.boolean "agent"
-    t.integer "crowd_level"
-    t.integer "noise_level"
     t.boolean "safetiness"
-    t.integer "cleanliness_level"
-    t.integer "bad_smell_level"
     t.integer "star_bus_id"
     t.string "star_destination"
     t.string "star_line_short_name"
@@ -41,6 +37,10 @@ ActiveRecord::Schema.define(version: 2021_11_26_105818) do
     t.integer "star_direction_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "crowd_level"
+    t.boolean "noise_level"
+    t.boolean "cleanliness_level"
+    t.boolean "bad_smell_level"
   end
 
   create_table "itineraries", force: :cascade do |t|
