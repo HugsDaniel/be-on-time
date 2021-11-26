@@ -3,7 +3,10 @@
     <h1><strong>BoT</strong> - Be on Time</h1>
     <p>Ne vous stressez plus pour votre voyage en bus de tous les jours, <br>
       Bot est là pour changer votre vie.</p>
-    <a class="btn btn-primary btn-fade p-2" href="#">Sign up</a>
+    <div class="d-flex">
+      <a class="btn btn-primary btn-fade m-2 p-2" href="#">Sign up</a>
+      <%= link_to "Sign in", new_user_session_path, class: "btn btn-secondary m-2 p-2" %>
+    </div>
   </div>
 </div>
 
