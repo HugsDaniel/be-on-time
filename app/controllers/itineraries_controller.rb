@@ -4,18 +4,21 @@ class ItinerariesController < ApplicationController
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
 
-      # from = Geocoder.coordinates(@itinerary.starting_point)
-      # to = Geocoder.coordinates(@itinerary.end_point)
+      @departing = Geocoder.coordinates(@itinerary.starting_point).join(", ")+", 800"
+      @arrival = Geocoder.coordinates(@itinerary.end_point).join(", ")+", 800"
+      p @departing
+      p @arrival
 
       # @departing = BusStop.near(from, 1.5, order: :distance).first
       # @arrival = BusStop.near(to, 1.5, order: :distance).first
-      @departing = @itinerary[:starting_point]
-      @arrival = @itinerary[:end_point]
+      # @departing = @itinerary[:starting_point]
+      # @arrival = @itinerary[:end_point]
 
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       @colours = []
 
       @itineraries = @itineraries_data.map do |iti|
+        p "creating bus"
         bus = Bus.find_or_create_by!(
           star_bus_id: iti[:bus_id],
           star_line_short_name: iti[:bus_name],
@@ -23,7 +26,7 @@ class ItinerariesController < ApplicationController
           star_destination: iti[:star_destination]
         )
         @colours << Line.find_by(star_line_id: bus.star_line_id).colour
-
+        p "creating itinerary"
 
         itinerary = Itinerary.create!(
           user: current_user,
