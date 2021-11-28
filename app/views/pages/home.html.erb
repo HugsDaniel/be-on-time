@@ -1,9 +1,29 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1486746290722-483e8f1e44d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1897&q=80);">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <%=image_tag("logo.png")%>
+  </a>
+  <% if current_user %>
+
+
+  <%= link_to '', destroy_user_session_path, :method => :delete, :confirm => "Are you sure?", class: "fas fa-sign-out-alt sign-in" %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "sign-in" %>
+  <% end %>
+</div>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1532303611569-61986f21b89c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=906&q=80);">
   <div class="container">
-    <h1><strong>BoT</strong> - Be on Time</h1>
+
+    <h1>Be on Time</h1>
     <p>Ne vous stressez plus pour votre voyage en bus de tous les jours, <br>
       Bot est là pour changer votre vie.</p>
-    <a class="btn btn-primary btn-fade p-2" href="#">Sign up</a>
+    <div class="d-flex">
+    <% if current_user %>
+      <%= link_to "Start my trip", itineraries_path, class: "sign-up" %>
+    <% else %>
+      <%= link_to "Sign up now!", new_user_registration_path, class: "sign-up" %>
+    <% end %>
+    </div>
   </div>
 </div>
 
