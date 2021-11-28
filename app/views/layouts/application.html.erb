@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bot</title>
+    <%= favicon_link_tag %>
+    <title>Be on Time & enjoy your trip</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -20,7 +21,7 @@
             z-index: -1;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-    
+
 
     <%= render 'shared/flashes' %>
 
