@@ -10,13 +10,14 @@ class FetchItineraryService
   end
 
   def call
-    url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-circulation-passages-tr&q=&sort=-departtheorique&refine.nomarret=#{@depart}"
-    passage_serialized = URI.parse(URI.escape(url)).open.read
+    url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-circulation-passages-tr&q=&rows=10000&sort=-arriveetheorique&facet=idligne&facet=nomcourtligne&facet=sens&facet=destination&facet=precision&geofilter.distance=#{@depart}"
+    passage_serialized = URI.parse(url).open.read
     passage_depart = JSON.parse(passage_serialized)["records"]
 
-    url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-circulation-passages-tr&q=&sort=-departtheorique&refine.nomarret=#{@arrivee}"
-    passage_serialized = URI.parse(URI.escape(url)).open.read
+    url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-circulation-passages-tr&q=&rows=10000&sort=-arriveetheorique&facet=idligne&facet=nomcourtligne&facet=sens&facet=destination&facet=precision&geofilter.distance=#{@arrivee}"
+    passage_serialized = URI.parse(url).open.read
     passage_arrivee = JSON.parse(passage_serialized)["records"]
+    p url
 
     id_pd = passage_depart.map do |passage|
       passage["fields"]["idcourse"]
