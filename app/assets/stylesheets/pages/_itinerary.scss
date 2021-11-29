@@ -169,14 +169,21 @@ h2 {
   display: block ruby;
 }
 
-.exit-btn {
+.home-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
-  background: white;
+  background: $primary;
   display:flex;
   justify-content: center;
   align-items: center;
   position: absolute; top: 12px; right: 12px
+}
+
+.home-logo {
+  width: 24px;
+  height: 24px;
+  color: white;
+  z-index: 1;
 }
 
 

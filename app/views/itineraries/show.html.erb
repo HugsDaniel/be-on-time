@@ -1,6 +1,10 @@
 
 <div >
-  <div class="exit-btn"> <%= image_tag("exit.svg")%> </div>
+      <%= link_to itineraries_path do %>
+       <div class="home-btn"> <%= image_tag("home.svg",class: "home-logo")%> </div>
+      <% end %>
+
+
 
   <div class="intinerary-infos itinerary-collapse">
     <div class="line-logo-big">
@@ -23,7 +27,7 @@
         <div class="d-flex justify-content-between">
           <div class="left-info">
             <%= image_tag("bus.svg")%>
-            <span class="bus-to-stop"><%= arrives_after(@iti_bus.departing_time) %> min.</span>
+            <span class="bus-to-stop">prochain bus : <%= arrives_after(@iti_bus.departing_time) %> min.</span>
           </div>
           <div class="right-info">
               <div class="status-svg">
@@ -45,7 +49,7 @@
     <div class="bus-infos d-flex">
       <div class="left-info">
         <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">15 min.</span>
+        <span class="bus-to-stop">prochain bus : 15 min.</span>
       </div>
       <div class="right-info">
         <div class="bus-status">
@@ -58,7 +62,7 @@
     <div class="bus-infos d-flex">
       <div class="left-info">
         <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">20 min.</span>
+        <span class="bus-to-stop">prochain bus : 20 min.</span>
       </div>
       <div class="right-info">
         <div class="bus-status">
