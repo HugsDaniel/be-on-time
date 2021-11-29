@@ -1,5 +1,6 @@
 
 .info-active {
+    transition:0.2s;
     visibility: visible !important;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.8);
@@ -7,6 +8,9 @@
 }
 
 .bus-info {
+    transition: ".bus-status" 0.2s;
+    transition:0.2s;
+
     visibility: hidden;
     padding-top: 15vh;
 }
