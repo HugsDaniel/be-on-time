@@ -18,7 +18,6 @@ class ItinerariesController < ApplicationController
       @colours = []
 
       @itineraries = @itineraries_data.map do |iti|
-        p "creating bus"
         bus = Bus.find_or_create_by!(
           star_bus_id: iti[:bus_id],
           star_line_short_name: iti[:bus_name],
@@ -26,7 +25,6 @@ class ItinerariesController < ApplicationController
           star_destination: iti[:star_destination]
         )
         @colours << Line.find_by(star_line_id: bus.star_line_id).colour
-        p "creating itinerary"
 
         itinerary = Itinerary.create!(
           user: current_user,
