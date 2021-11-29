@@ -1,0 +1,113 @@
+
+.info-active {
+    visibility: visible !important;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    // filter: blur(2px);
+}
+
+.bus-info {
+    visibility: hidden;
+    padding-top: 15vh;
+}
+
+.status-ligne .form-check{
+    max-width: 15vh;
+    max-height: 15vh;
+    padding: 0;
+
+}
+
+.status-ligne .form-group{
+    max-width: 15vh;
+    max-height: 15vh;
+
+}
+.bus-status {
+    transform: scale(0);
+}
+.bus-status + label{
+    svg {
+        height: 5vh;
+    }
+    svg path {
+        fill:$primary;
+    }
+    box-shadow: #47b2ff2c 0px 8px 24px;
+    // bottom: 2.2650056625141564vh;
+    // right: 4.8vw;
+    
+    border-radius: 50%;
+    background-color: white;
+    width: 10vh;
+    height: 10vh;
+    cursor: pointer;
+    margin: 1rem; 
+    z-index: 10;  
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+.bus-status:checked + label {
+    background-color: $primary;
+    color: white;
+    svg path {
+        fill:white;
+    }
+}
+
+.bus-status input[type="checkbox"]:checked + label[type="checkbox"]::before {
+    display: none;
+  }
+
+.status-ligne {
+    justify-content: center;
+    display: flex;
+}
+
+.status-container {
+    width:100%;
+    padding:15px;
+    margin: auto 0;
+    justify-content: space-around;
+}
+
+.status-active {
+    // color: $primary;
+    background-color: white;
+}
+
+.status-svg {
+    svg {
+    width: 24px;
+    height: 24px;
+    path {
+        fill: $warning;
+    }
+    }
+}
+
+// .bus-status {
+//     position: absolute;
+//     transform: scale(0);
+//   }
+  
+//   .bus-status + label {
+//     cursor: pointer;
+//     display: inline-block;
+//     font-size: 0.7rem;
+//     border-radius: 50rem;
+//     padding: 0.1rem 0.5rem;
+//     background-color: #ECEAFF;
+//     color: #7E73FF;
+//     border: 1px solid #7E73FF;
+//     margin-right: 0.6rem;
+//     margin-bottom: 0.4rem;
+//   }
+  
+//   .bus-status:checked + label {
+//     background-color: #7E73FF;
+//     color: white;
+//   }

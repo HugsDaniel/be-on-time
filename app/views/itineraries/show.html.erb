@@ -26,13 +26,19 @@
             <span class="bus-to-stop"><%= arrives_after(@iti_bus.departing_time) %> min.</span>
           </div>
           <div class="right-info">
-            <div class="bus-status">
-              <%= image_tag("noise.svg")%>
-              <%= image_tag("agent.svg")%>
-            </div>
+              <div class="status-svg">
+                <%= @image_garbage.html_safe if (@bus.cleanliness_level)%>
+                <%= @image_thief.html_safe if @bus.safetiness%>
+                <%= @image_speaker.html_safe if @bus.noise_level%>
+                <%= @image_nose.html_safe if @bus.bad_smell_level%>
+                <%= @image_people.html_safe if  @bus.crowd_level%>
+                <%= @image_agent.html_safe if @bus.agent%>
+                </div>
           </div>
         </div>
-      <div class="mt-3 btn btn-primary btn-block btn-fade">I'm in the bus</div>
+      <%= link_to trip_path(@itinerary) do %>
+        <div class="mt-3 btn btn-primary btn-block btn-fade">I'm in the bus</div>
+      <% end %>
     </div>
     <%# End %>
 
@@ -63,4 +69,3 @@
     </div>
   </div>
 </div>
-

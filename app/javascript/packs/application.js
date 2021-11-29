@@ -26,7 +26,11 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
+import { toggleInfo } from '../components/status';
 import { toggleMenu } from '../components/menu';
+import { changeStatus } from '../components/change_info_status';
+
+
 
 import { initMapbox } from '../plugins/init_mapbox';
 
@@ -34,11 +38,10 @@ import { panelTrigger } from '../animations/panel';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
-
-  panelTrigger();
-
+  toggleInfo();
   toggleMenu();
-
+  changeStatus();
+  panelTrigger();
 })
 
 import "controllers"
