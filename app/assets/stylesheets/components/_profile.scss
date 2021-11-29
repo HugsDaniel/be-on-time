@@ -48,9 +48,47 @@
 }
 
 .profile .info {
-    position: absolute;
-    top: 0.5rem;
-    right: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 3rem;
     color:white;
+    font-weight: bold;
+}
+
+.cross-active {
+    #i {
+        transition: 0.4s;
+        transform:rotate(360deg);
+        visibility: hidden;
+        opacity: 0;
+    }
+    #x {
+        transition: 0.4s;
+        opacity: 1;
+        transform:rotate(360deg);
+        visibility: visible;
+    }
+}
+
+#i {
+    margin: 25% auto;
+    height: 50%;
+    transition: 0.4s;
+    opacity: 1;
+    transform:rotate(0deg);
+    visibility: visible;
+}
+
+
+#x {
+    margin: 25% auto;
+    height: 50%;
+    position: relative;
+    top: -75%;
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    transform:rotate(0deg);
+
 }

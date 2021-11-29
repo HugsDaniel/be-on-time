@@ -52,7 +52,7 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find(params[:id])
     # @email = @itinerary.user.email
-
+    
     @iti_bus = @itinerary.itinerary_buses.first
     @bus = @iti_bus.bus
     @direction = @bus.star_destination
