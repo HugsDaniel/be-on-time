@@ -1,6 +1,12 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #011627;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  height: 66px;
+  z-index: 1;
+  padding: 0px 15px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -8,5 +14,21 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 66px;
+}
+
+.sign-in {
+  border: 2px #F4F4F4 solid;
+  border-radius: 7px;
+  padding: 4px;
+  font-size: 14px;
+  color: #F4F4F4;
+}
+
+.sign-in:hover {
+  text-decoration: none;
+}
+
+.fa-sign-out-alt:hover {
+  text-decoration: none;
 }
