@@ -8,9 +8,7 @@
 }
 
 .bus-info {
-    transition: ".bus-status" 0.2s;
-    transition:0.2s;
-
+    transition: ".bus-status" 0.2s; 
     visibility: hidden;
     padding-top: 15vh;
 }
@@ -27,9 +25,26 @@
     max-height: 15vh;
 
 }
-.bus-status {
-    transform: scale(0);
+
+.bus-status-invisible {
+    //opacity: 0 !important;
 }
+
+.bus-status {
+    //opacity: 1;
+    transform: scale(0);
+    
+}
+
+.form-check-label {
+    opacity:0;
+}
+
+.form-check-label-animate {
+    animation:fadeIn 1s;
+    animation-fill-mode: forwards;
+}
+
 .bus-status + label{
     svg {
         height: 5vh;
@@ -85,6 +100,7 @@
 
 .status-svg {
     svg {
+    margin-left: 3px;
     width: 24px;
     height: 24px;
     filter: drop-shadow(0px 0px 5px #8883FF54);
@@ -92,5 +108,31 @@
             fill: $warning;
         }
     }
+}
+
+
+@keyframes fadeIn {
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+
+#edit_bus_32 .status-ligne:nth-child(1)  {
+    transform:scale(10);
+}
+
+@for $i from 1 through 3 {
+     .status-ligne {
+      
+      // :nth-child(1-9) 
+      &:nth-child(#{$i}) {
+        // Delay the animation. Delay increases as items loop.
+        animation-delay: $i * (1s );
+    }
+  }
 }
 
