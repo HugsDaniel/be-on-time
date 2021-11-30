@@ -45,6 +45,12 @@ class ItinerariesController < ApplicationController
         itinerary
       end
 
+      @image_thief = thief()
+      @image_agent = agent()
+      @image_speaker = speaker()
+      @image_garbage = garbage()
+      @image_people = people()
+      @image_nose = nose()
     end
   end
 

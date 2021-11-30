@@ -4,7 +4,6 @@
   border-radius:15px 15px 0 0;
   position:fixed;
   bottom:0;
-  height:380px;
   padding-top: $base-spacing;
 
   .itineraries--summary {
@@ -12,6 +11,7 @@
   }
   .sub-info {
     color:$grey;
+    margin-left: 8px;
   }
 
   .line-logo{
@@ -20,11 +20,21 @@
     border-radius:50%;
     margin-bottom: 4px;
   }
+
+   :last-child {
+    border-bottom: none;
+  }
 }
 
 h2 {
   font-size: 1rem;
 }
+.trip-option {
+  margin-bottom: 14px;
+  border-bottom: 1px double $light-grey;
+  padding-bottom: 1rem;
+}
+
 
 .line-tiny {
   position: relative;
@@ -43,7 +53,8 @@ h2 {
 
   img{
     position: relative;
-    left: 5px;
+    left: 3px;
+    width: 32px;
   }
 
 }
@@ -103,6 +114,55 @@ h2 {
 
 }
 
+
+.btn-line-sm {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $UIfont-bold;
+  font-size: 100%;
+  color: black;
+  z-index: 1;
+
+}
+.shortName {
+color:black;
+align-items: center;
+}
+
+.line {
+  height: 1px;
+  background-color: $grey;
+  width: 50%;
+  margin-bottom: 2.5rem;
+}
+
+.bus-arrival-time {
+font-size: 12px;
+}
+
+.next-bus {
+font-size: 12px;
+}
+
+.arret-depart {
+font-size: 12px;
+}
+.arret-end {
+font-size: 12px;
+}
+
+
+.trip-logos {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
 .btn-expand {
   width: 40px; height: 40px;
   border-radius: 50%;
@@ -143,14 +203,30 @@ h2 {
   padding: 16px;
   border-bottom : 1px solid $light-grey;
 
-  .active {
-    color:$primary;
-  }
+
 }
 
 .bus-status img:not(:last-child) {
   margin-right:10px;
 }
+
+.bus-status-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 120px;
+  padding-left: 16px;
+
+}
+
+.active {
+opacity: 0.2;
+filter: grayscale(0.5);
+}
+
+.bus-status-container img:not(:last-child) {
+  margin-right:10px;
+}
+
 
 .bus-info {
   border: solid 1px $light-grey;
@@ -159,7 +235,6 @@ h2 {
 .bus-to-stop {
   color: $light-grey;
 }
-
 
 .left-info {
   display: block ruby;
@@ -174,7 +249,6 @@ h2 {
   align-items: center;
   position: absolute; top: 12px; right: 12px
 }
-
 
 .btn-block {
   font-family: $UIfont;

@@ -45,29 +45,68 @@
       <% @itineraries.each_with_index do |itinerary, index| %>
         <div class="trip-option">
           <h2>Itinéraire <%= index + 1 %></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
           <div class="trip d-flex justify-content-between">
 
             <% itinerary.itinerary_buses.each_with_index do |iti_bus, index| %>
-              <div class="trip-step ">
-
-
-               <div class="btn-line-big" style="background-color:<%= @colours[index] %>; font-size:<%= 64 / iti_bus.bus.star_line_short_name.length%>px;"> <%= @star_short_name %></div>
-
-                <h3><%= iti_bus.bus.star_line_short_name %></h3>
-                <h2><%= arrives_after(iti_bus.departing_time).abs %> min</h2>
-              </div>
+              <div class="trip-logos">
+                <div class="trip-step ">
+                <div class="btn-line-sm" style=" color: black; background-color:<%= @colours[index] %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;"> <span class="shortName">C1</span></div>
+                  <div class="arret-depart">Arret</div>
+                  <div class="next-bus"><%= arrives_after(iti_bus.departing_time).abs %> min</div>
+                </div>
             <% end %>
+
+              <div class="line"></div>
+
             <div class="trip-step">
-             <%= image_tag("end_point.svg")%>
-              <h3><%= trip_time(itinerary.arrival_time) %> min </h3>
+              <%= image_tag("end_point.svg")%>
+              <div class="arret-end">Arret</div>
+                <div class="bus-arrival-time"><%= trip_time(itinerary.arrival_time) %> min </div>
+              </div>
+            </div>
+
+            <div class="bus-status-container">
+
+            <%= image_tag("smell.svg",class: "active")%>
+            <%= image_tag("trash.svg",class: "active")%>
+            <%= image_tag("agent.svg",class: "active")%>
+            <%= image_tag("noise.svg",class: "active")%>
+            <%= image_tag("unsafe.svg",class: "active")%>
+            <%= image_tag("crowded.svg")%>
             </div>
 
             <div class="trip-detail-button align-self-center">
               <%= link_to itinerary_path(itinerary) do %>
-              <%= image_tag("details.svg")%>
+              <%= image_tag("arrow.svg")%>
               <% end %>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       <% end %>
     </div>
