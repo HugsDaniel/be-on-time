@@ -4,13 +4,16 @@ class ItinerariesController < ApplicationController
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
 
-      # from = Geocoder.coordinates(@itinerary.starting_point)
-      # to = Geocoder.coordinates(@itinerary.end_point)
+      @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
+      @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
+
+      p @departing
+      p @arrival
 
       # @departing = BusStop.near(from, 1.5, order: :distance).first
       # @arrival = BusStop.near(to, 1.5, order: :distance).first
-      @departing = @itinerary[:starting_point]
-      @arrival = @itinerary[:end_point]
+      # @departing = @itinerary[:starting_point]
+      # @arrival = @itinerary[:end_point]
 
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       @colours = []
@@ -23,7 +26,6 @@ class ItinerariesController < ApplicationController
           star_destination: iti[:star_destination]
         )
         @colours << Line.find_by(star_line_id: bus.star_line_id).colour
-
 
         itinerary = Itinerary.create!(
           user: current_user,
@@ -44,24 +46,21 @@ class ItinerariesController < ApplicationController
         itinerary
       end
 
+      @route = @itineraries_data.first[:coordinates]
+
     end
   end
 
   def show
     @itinerary = Itinerary.find(params[:id])
     # @email = @itinerary.user.email
-
+    
     @iti_bus = @itinerary.itinerary_buses.first
     @bus = @iti_bus.bus
     @direction = @bus.star_destination
     @star_short_name = @bus.star_line_short_name
     @colour_line = Line.find_by(star_line_id: @bus[:star_line_id]).colour
-    @image_thief = thief()
-    @image_agent = agent()
-    @image_speaker = speaker()
-    @image_garbage = garbage()
-    @image_people = people()
-    @image_nose = nose()
+
   end
 
   def favorites

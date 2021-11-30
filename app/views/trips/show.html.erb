@@ -3,17 +3,17 @@
     <%= simple_form_for @bus do |f| %>
 
         <div class="status-ligne">
-             <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status',checked: @bus.cleanliness_level} %>
-             <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status',checked: @bus.safetiness} %>
+             <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status bus-status-invisible',checked: @bus.cleanliness_level} %>
+             <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status bus-status-invisible',checked: @bus.safetiness} %>
 
         </div>
         <div class="status-ligne">
-             <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status',checked: @bus.noise_level} %>
-             <%= f.input  :bad_smell_level, label: @image_nose.html_safe, input_html: {class: 'bus-status', checked: @bus.bad_smell_level} %>
+             <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status bus-status-invisible',checked: @bus.noise_level} %>
+             <%= f.input  :bad_smell_level, label: @image_nose.html_safe, input_html: {class: 'bus-status bus-status-invisible', checked: @bus.bad_smell_level} %>
         </div>
         <div class="status-ligne">
-             <%= f.input  :crowd_level, label: @image_people.html_safe, input_html: {class: 'bus-status',checked: @bus.crowd_level} %>
-             <%= f.input  :agent, label: @image_agent.html_safe, input_html: {class: 'bus-status',checked: @bus.agent} %>
+             <%= f.input  :crowd_level, label: @image_people.html_safe, input_html: {class: 'bus-status bus-status-invisible',checked: @bus.crowd_level} %>
+             <%= f.input  :agent, label: @image_agent.html_safe, input_html: {class: 'bus-status bus-status-invisible',checked: @bus.agent} %>
     <% end %>
         </div>
     </div>
@@ -21,7 +21,11 @@
 
 </div>
 
-<div id="info-btn" style="bottom: 21.265vh;" class="profile"><div class="info">i</div></div>
+<div id="info-btn" style="bottom: 21.265vh;" class="profile">
+  <div class="info" id="i">i</div>
+  <div class="info" id="x"><i class="fas fa-times"></i></div>
+</div>
+
 
    <div class="exit-btn"> <%= image_tag("exit.svg")%> </div>
 
@@ -60,7 +64,9 @@
             </div>
           </div>
         </div>
-      <%= link_to itineraries_path do %>
-        <div class="mt-3 btn btn-primary btn-block btn-fade">I have arrived</div>
+
+      <%= link_to trips_arrived_path do %>
+        <div class="mt-3 btn btn-primary btn-block btn-fade">Je suis arrivé</div>
+
       <% end %>
     </div>

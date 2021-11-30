@@ -29,10 +29,13 @@ import "bootstrap";
 import { toggleInfo } from '../components/status';
 import { toggleMenu } from '../components/menu';
 import { changeStatus } from '../components/change_info_status';
+import { gsap } from "gsap";
+import { checkAnimation } from '../animations/checkmark';
 
 
 
 import { initMapbox } from '../plugins/init_mapbox';
+import { initAutocomplete } from '../plugins/init_autocomplete';
 
 import { panelTrigger } from '../animations/panel';
 
@@ -42,6 +45,8 @@ document.addEventListener('turbolinks:load', () => {
   toggleMenu();
   changeStatus();
   panelTrigger();
+  initAutocomplete();
+  checkAnimation();
 })
 
 import "controllers"
