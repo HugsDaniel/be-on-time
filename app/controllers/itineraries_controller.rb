@@ -47,8 +47,6 @@ class ItinerariesController < ApplicationController
     end
   end
 
-
-
   def show
     @itinerary = Itinerary.find(params[:id])
     # @email = @itinerary.user.email
@@ -64,11 +62,6 @@ class ItinerariesController < ApplicationController
     @image_garbage = garbage()
     @image_people = people()
     @image_nose = nose()
-    @markers = [{
-      lat: 48.104268,
-      lng: -1.673529
-    }]
-
   end
 
   def favorites

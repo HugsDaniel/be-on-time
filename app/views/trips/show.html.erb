@@ -56,7 +56,7 @@
                 <%= @image_people.html_safe if  @bus.crowd_level%>
                 <%= @image_agent.html_safe if @bus.agent%>
                 </div>
-
+              <div class="d-none" id="bus-id" data-id="<% @bus.star_bus_id %>"></div>
             </div>
           </div>
         </div>
