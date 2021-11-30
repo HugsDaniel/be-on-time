@@ -1,0 +1,11 @@
+.circle, .check {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+#check {
+    svg {
+    margin: 0 auto;
+    display: block;
+    }
+}

@@ -4,8 +4,9 @@ class ItinerariesController < ApplicationController
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
 
-      @departing = Geocoder.coordinates(@itinerary.starting_point).join(", ")+", 800"
-      @arrival = Geocoder.coordinates(@itinerary.end_point).join(", ")+", 800"
+      @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
+      @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
+
       p @departing
       p @arrival
 
@@ -45,6 +46,8 @@ class ItinerariesController < ApplicationController
         itinerary
       end
 
+      @route = @itineraries_data.first[:coordinates]
+
     end
   end
 
@@ -53,18 +56,13 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find(params[:id])
     # @email = @itinerary.user.email
-
+    
     @iti_bus = @itinerary.itinerary_buses.first
     @bus = @iti_bus.bus
     @direction = @bus.star_destination
     @star_short_name = @bus.star_line_short_name
     @colour_line = Line.find_by(star_line_id: @bus[:star_line_id]).colour
-    @image_thief = thief()
-    @image_agent = agent()
-    @image_speaker = speaker()
-    @image_garbage = garbage()
-    @image_people = people()
-    @image_nose = nose()
+
   end
 
   def favorites
