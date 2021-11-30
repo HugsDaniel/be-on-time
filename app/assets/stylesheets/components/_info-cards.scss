@@ -1,5 +1,6 @@
 
 .info-active {
+    transition:0.2s;
     visibility: visible !important;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.8);
@@ -7,6 +8,7 @@
 }
 
 .bus-info {
+    transition: ".bus-status" 0.2s; 
     visibility: hidden;
     padding-top: 15vh;
 }
@@ -23,9 +25,26 @@
     max-height: 15vh;
 
 }
-.bus-status {
-    transform: scale(0);
+
+.bus-status-invisible {
+    //opacity: 0 !important;
 }
+
+.bus-status {
+    //opacity: 1;
+    transform: scale(0);
+    
+}
+
+.form-check-label {
+    opacity:0;
+}
+
+.form-check-label-animate {
+    animation:fadeIn 1s;
+    animation-fill-mode: forwards;
+}
+
 .bus-status + label{
     svg {
         height: 5vh;
@@ -81,33 +100,39 @@
 
 .status-svg {
     svg {
+    margin-left: 3px;
     width: 24px;
     height: 24px;
-    path {
-        fill: $warning;
-    }
+    filter: drop-shadow(0px 0px 5px #8883FF54);
+        path {
+            fill: $warning;
+        }
     }
 }
 
-// .bus-status {
-//     position: absolute;
-//     transform: scale(0);
-//   }
-  
-//   .bus-status + label {
-//     cursor: pointer;
-//     display: inline-block;
-//     font-size: 0.7rem;
-//     border-radius: 50rem;
-//     padding: 0.1rem 0.5rem;
-//     background-color: #ECEAFF;
-//     color: #7E73FF;
-//     border: 1px solid #7E73FF;
-//     margin-right: 0.6rem;
-//     margin-bottom: 0.4rem;
-//   }
-  
-//   .bus-status:checked + label {
-//     background-color: #7E73FF;
-//     color: white;
-//   }
+
+@keyframes fadeIn {
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+
+#edit_bus_32 .status-ligne:nth-child(1)  {
+    transform:scale(10);
+}
+
+@for $i from 1 through 3 {
+     .status-ligne {
+      
+      // :nth-child(1-9) 
+      &:nth-child(#{$i}) {
+        // Delay the animation. Delay increases as items loop.
+        animation-delay: $i * (1s );
+    }
+  }
+}
+
