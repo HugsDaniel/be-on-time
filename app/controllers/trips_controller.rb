@@ -14,6 +14,9 @@ class TripsController < ApplicationController
     @image_nose = nose()
   end
 
+  def arrived
+  end
+
   private
 
 
