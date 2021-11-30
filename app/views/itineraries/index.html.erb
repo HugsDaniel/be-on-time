@@ -80,8 +80,7 @@
     <div class="menu-main">
       <%# <img src="bell.svg" alt="My Happy SVG" /> %>
       <%= image_tag("bell.svg", class: "bell") %>
-      <%= image_tag("signout.svg", class: "signoutsvg") %>
-
+      <%= link_to image_tag("signout.svg", class: "signoutsvg"), destroy_user_session_path, :method => :delete, :confirm => "Are you sure?" %>
     </div>
   </div>
 <% end %>

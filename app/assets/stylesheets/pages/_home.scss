@@ -1,9 +1,44 @@
 // Specific CSS for your home-page
+.body {
+  background-color:#F4F4F4;
+  position: fixed;
+
+}
 
 // Tricks to avoid overflow
-.home {
-    position:fixed;
-    height:100%;
-    width:100%;
-    background-color: #999999;
+
+
+.container-steps {
+  background-color: #F4F4F4;
+  height: 100vh;
+  margin: 0;
+}
+
+.container-steps h1 {
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 37px;
+  color: #47B1FF;
+  padding-top: 86px;
+  padding-bottom: 40px;
+}
+
+.container-infos {
+  background: #47B1FF;
+  height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.container-infos h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 37px;
+  text-align: center;
+  color: #FFFCFC;
+  padding-top: 61px;
+  padding-bottom: 27px;
 }
