@@ -18,8 +18,8 @@ const updateSource = (map) => {
         element.className = 'marker';
         element.style.backgroundImage = `url('${image_url}')`;
         element.style.backgroundSize = 'contain';
-        element.style.width = '50px';
-        element.style.height = '50px';
+        element.style.width = '30px';
+        element.style.height = '30px';
 
         const lat = data.records[0].fields.coordonnees[0]
         const lng = data.records[0].fields.coordonnees[1]
@@ -29,9 +29,9 @@ const updateSource = (map) => {
           .setLngLat([lng, lat])
           .addTo(map);
 
+
         map.flyTo({
           center: [lng, lat],
-          zoom: 13,
           speed: 30
         })
       })
