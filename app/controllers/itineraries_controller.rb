@@ -4,8 +4,9 @@ class ItinerariesController < ApplicationController
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
 
-      @departing = Geocoder.coordinates(@itinerary.starting_point).join(", ")+", 800"
-      @arrival = Geocoder.coordinates(@itinerary.end_point).join(", ")+", 800"
+      @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
+      @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
+
       p @departing
       p @arrival
 
@@ -44,6 +45,8 @@ class ItinerariesController < ApplicationController
         )
         itinerary
       end
+
+      @route = @itineraries_data.first[:coordinates]
 
     end
   end
