@@ -4,6 +4,6 @@ module ItineraryHelper
   end
 
   def trip_time(arrival_time)
-    (arrival_time - Time.now).to_i / 60
+    (arrival_time.localtime("+01:00") - Time.now).to_i / 60
   end
 end

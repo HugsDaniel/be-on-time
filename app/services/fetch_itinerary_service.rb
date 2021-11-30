@@ -17,7 +17,6 @@ class FetchItineraryService
     url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-circulation-passages-tr&q=&rows=10000&sort=-arriveetheorique&facet=idligne&facet=nomcourtligne&facet=sens&facet=destination&facet=precision&geofilter.distance=#{@arrivee}"
     passage_serialized = URI.parse(url).open.read
     passage_arrivee = JSON.parse(passage_serialized)["records"]
-    p url
 
     id_pd = passage_depart.map do |passage|
       passage["fields"]["idcourse"]
@@ -30,30 +29,46 @@ class FetchItineraryService
     courses = id_pd & id_pa
 
     relevant_pa = courses.map do |idcourse|
-      passage_arrivee.find { |passage| passage["fields"]["idcourse"] == idcourse }
-    end
+      passage_arrivee.find do |passage|
+        passage["fields"]["idcourse"] == idcourse
+      end
+    end.reject(&:nil?)
 
     relevant_pa.sort_by! { |pd|
       Time.parse(pd["fields"]["arrivee"])
     }
 
-    results = relevant_pa
 
+    relevant_pa.map do |passagea|
+      passaged = passage_depart.find { |passage_d| passage_d["fields"]["idcourse"] == passagea["fields"]["idcourse"] }
 
-    results.map do |result|
-      passaged = passage_depart.find { |passage| passage["fields"]["idcourse"] == result["fields"]["idcourse"] }
+      next if Time.parse(passaged['fields']['arrivee']) > Time.parse(passagea['fields']['arrivee'])
+      next if Time.parse(passaged["fields"]["arrivee"]).localtime("+01:00") < Time.now
 
-      next if Time.parse(passaged['fields']['arrivee']) > Time.parse(result['fields']['arrivee'])
+      url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-circulation-passages-tr&q=&rows=-1&sort=-arrivee&refine.idcourse=#{passagea['fields']['idcourse']}"
+      passage_serialized = URI.parse(url).open.read
+      all_stops = JSON.parse(passage_serialized)["records"]
+
+      departure_stop_index = all_stops.find_index {|stop| stop["fields"]["nomarret"] == passaged['fields']['nomarret']}
+      arrival_stop_index = all_stops.find_index {|stop| stop["fields"]["nomarret"] == passagea['fields']['nomarret']}
+
+      coordinates = ""
+      all_stops.each_with_index do |stop, index|
+        if (departure_stop_index..arrival_stop_index).to_a.include?(index)
+          coordinates += "#{stop["fields"]["coordonnees"].join(",")};"
+        end
+      end
 
       {
-        bus_id: result['fields']['idbus'],
-        bus_name: result['fields']['nomcourtligne'],
-        starting_point: @depart,
-        end_point: @arrivee,
-        departing_time: Time.parse(passaged['fields']['arrivee']).localtime("+01:00"),
-        arrival_time: Time.parse(result['fields']['arrivee']).localtime("+01:00"),
-        star_line_id: result['fields']['idligne'],
-        star_destination: result['fields']['destination']
+        bus_id: passagea['fields']['idbus'],
+        bus_name: passagea['fields']['nomcourtligne'],
+        starting_point: passaged['fields']['nomarret'],
+        end_point: passagea['fields']['nomarret'],
+        departing_time: passaged['fields']['arrivee'],
+        arrival_time: passagea['fields']['arrivee'],
+        star_line_id: passagea['fields']['idligne'],
+        star_destination: passagea['fields']['destination'],
+        coordinates: coordinates
       }
     end.reject(&:nil?).first(3)
 
@@ -79,7 +94,7 @@ end
 
 # Bus.find_or_create_by(
   #   idbus: idbus
-  # )
+  #
 
   # url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-geoposition-suivi-new-billetique-tr&q=53&sort=-nomcourtligne&facet=numerobus&facet=voiturekr&facet=nomcourtligne&facet=sens&facet=destination&facet=is_nouvelle_billettique&refine.numerobus=#{bus_id}"
   # passage_serialized = URI.parse(url).open.read

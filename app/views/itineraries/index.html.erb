@@ -1,15 +1,17 @@
+ <div class="d-none" id="coordinates" data-coordinates="<%= @route %>"></div>
+
 <div >
   <div class="container">
     <%= form_tag itineraries_path, method: :get, html: { class: 'itineraries' }  do %>
       <%= text_field_tag :departure,
         params[:departure],
-        class: "form-control w-100",
+        class: "form-control w-100 address-input",
         placeholder: "Départ"
        %>
        <div class="arrival d-flex">
         <%= text_field_tag :arrival,
           params[:arrival],
-          class: "form-control w-100",
+          class: "form-control w-100 address-input",
           placeholder: "Arrivée"
         %>
         <div><%= submit_tag "Go", class: "btn btn-primary" %></div>
@@ -59,6 +61,11 @@
             <% end %>
 
               <div class="line"></div>
+
+                <h3><%= iti_bus.bus.star_line_short_name %></h3>
+                <h2><%= arrives_after(iti_bus.departing_time) %> min</h2>
+              </div>
+            <% end %>
 
             <div class="trip-step">
               <%= image_tag("end_point.svg")%>

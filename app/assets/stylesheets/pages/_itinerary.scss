@@ -60,16 +60,20 @@ h2 {
 }
 
 
-.starting {
-  margin-left: 8px ;
+#departure {
+  margin-top: 24px ;
 }
 
-.arrival {
-  margin-left: 8px;
-}
+
 
 .in-bus-btn {
   font-size: 1.2rem;
+}
+
+.z1 {
+  z-index: 1;
+
+  padding: 3px 13px 3px 13px;
 }
 
 .intinerary-infos {
@@ -240,14 +244,19 @@ filter: grayscale(1);
   display: block ruby;
 }
 
-.exit-btn {
-  width: 36px; height: 36px;
+.home-btn {
+  width: 36PX; height: 36PX;
   border-radius: 50%;
-  background: white;
+  background: $primary;
   display:flex;
   justify-content: center;
   align-items: center;
   position: absolute; top: 12px; right: 12px
+}
+.home-logo{
+  width: 10px;
+  height: 10px;
+  color: white;
 }
 
 .btn-block {
