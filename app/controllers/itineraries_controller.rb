@@ -43,8 +43,13 @@ class ItinerariesController < ApplicationController
           arrival_time: iti[:arrival_time]
         )
         itinerary
-      end
+        @itinerary = Itinerary.find(params[:id])
+        @iti_bus = @itinerary.itinerary_buses.first
+        @bus = @iti_bus.bus
+        @direction = @bus.star_destination
+        @star_short_name = @bus.star_line_short_name
 
+      end
       @image_thief = thief()
       @image_agent = agent()
       @image_speaker = speaker()

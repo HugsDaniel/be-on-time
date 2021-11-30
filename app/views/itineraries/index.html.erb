@@ -47,23 +47,12 @@
           <h2>Itinéraire <%= index + 1 %></h2>
 
 
-
-
-
-
-
-
-
-
-
-
-
           <div class="trip d-flex justify-content-between">
 
             <% itinerary.itinerary_buses.each_with_index do |iti_bus, index| %>
               <div class="trip-logos">
                 <div class="trip-step ">
-                <div class="btn-line-sm" style=" color: black; background-color:<%= @colours[index] %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;"> <span class="shortName">C1</span></div>
+                <div class="btn-line-sm" style=" color: black; background-color:<%= @colours[index] %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;"> <span class="shortName"><%= @star_short_name %></span></div>
                   <div class="arret-depart">Arret</div>
                   <div class="next-bus"><%= arrives_after(iti_bus.departing_time).abs %> min</div>
                 </div>
@@ -94,16 +83,6 @@
               <% end %>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
