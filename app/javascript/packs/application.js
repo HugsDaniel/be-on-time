@@ -29,6 +29,7 @@ import "bootstrap";
 import { toggleInfo } from '../components/status';
 import { toggleMenu } from '../components/menu';
 import { changeStatus } from '../components/change_info_status';
+import { checkAnimation } from '../animations/checkmark';
 
 
 
@@ -42,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   toggleMenu();
   changeStatus();
   panelTrigger();
+  checkAnimation();
 })
 
 import "controllers"
