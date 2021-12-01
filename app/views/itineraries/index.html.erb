@@ -1,5 +1,12 @@
- <div class="d-none" id="coordinates" data-coordinates="<%= @route %>"></div>
+<style>
+  body {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+  }
+</style>
 
+<div class="d-none" id="coordinates" data-coordinates="<%= @route %>"></div>
 <div >
   <div class="container">
     <%= form_tag itineraries_path, method: :get, html: { class: 'itineraries' }  do %>
