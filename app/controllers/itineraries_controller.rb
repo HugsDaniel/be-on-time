@@ -66,5 +66,23 @@ class ItinerariesController < ApplicationController
   end
 
   def favorites
+    @itineraries_fav = Itinerary.find_by(favorite: true)
+
+
+    @departing = Geocoder.coordinates(@itineraries_fav.starting_point).join(",")+",200"
+    @arrival = Geocoder.coordinates(@itineraries_fav.end_point).join(",")+",200"
+
+    @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
+
+    @iti_bus = @itineraries_fav.itinerary_buses.first
+    @bus = @iti_bus.bus
+    @colours = Line.find_by(star_line_id: 1).colour
+
+    itineraries_fav = itineraries_fav.update(
+      user: current_user,
+      departing_time: @itineraries_data[:departing_time],
+      arrival_time: @itineraries_data[:arrival_time]
+    )
+
   end
 end
