@@ -12,11 +12,14 @@ class ItinerariesController < ApplicationController
 
       @itineraries = @itineraries_data.map do |iti|
         bus = Bus.find_or_create_by!(
-          star_bus_id: iti[:bus_id],
-          star_line_short_name: iti[:bus_name],
-          star_line_id: iti[:star_line_id],
-          star_destination: iti[:star_destination]
+          star_bus_id: iti[:bus_id]
         )
+        bus.star_line_short_name = iti[:bus_name]
+        bus.star_line_id = iti[:star_line_id]
+        bus.star_destination = iti[:star_destination]
+
+        bus.save
+
         @colours << Line.find_by(star_line_id: bus.star_line_id).colour
 
         itinerary = Itinerary.create!(
@@ -37,9 +40,23 @@ class ItinerariesController < ApplicationController
         )
         itinerary
       end
+      @dep_coordinates = Geocoder.coordinates(params[:departure])
+      @ari_coordinates = Geocoder.coordinates(params[:arrival])
+
+      @markers = [
+        {
+          lat: @dep_coordinates.first,
+          lng: @dep_coordinates.last,
+          image_url: helpers.asset_url('starting_point.svg')
+        },
+        {
+          lat: @ari_coordinates.first,
+          lng: @ari_coordinates.last,
+          image_url: helpers.asset_url('end_point.svg')
+        }
+      ]
 
       @route = @itineraries_data.first[:coordinates] if @itineraries_data.length > 1
-
     end
   end
 

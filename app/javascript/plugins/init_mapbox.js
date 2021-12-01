@@ -41,18 +41,41 @@ const updateSource = (map) => {
     const mapElement = document.getElementById('map');
     if (mapElement) { // only build a map if there's a div#map to inject into
       mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/stanouuuu/ckwc8mhxk5ha815qnyxryrxb3',
         center: [-1.6777926, 48.11], // starting position [lng, lat]
         zoom: 13
       });
+
+      const markers = JSON.parse(mapElement.dataset.markers);
+      if (markers && markers.length > 0) {
+        markers.forEach((marker) => {
+          const element = document.createElement('div');
+          element.className = 'marker';
+          element.style.backgroundImage = `url('${marker.image_url}')`;
+          element.style.backgroundSize = 'contain';
+          element.style.width = '20px';
+          element.style.height = '20px';
+          element.style.left = '-1px';
+          element.style.top = '-14px';
+
+          new mapboxgl.Marker(element)
+            .setLngLat([marker.lng, marker.lat])
+            .addTo(map);
+        });
+        const bounds = new mapboxgl.LngLatBounds();
+        markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
+        map.fitBounds(bounds, { padding: { top: 30, bottom: 320, left: 70, right: 70 }, maxZoom: 15, duration: 0 });
+      }
+
       updateSource(map)
 
       setInterval(async () => {
       if (marker) { marker.remove() }
       updateSource(map)
-    }, 7000)
+      }, 7000)
 
     map.on('load', () => {
       const nothing = turf.featureCollection([]);
@@ -72,7 +95,7 @@ const updateSource = (map) => {
             'visibility': 'visible'
           },
           paint: {
-            'line-color': '#E67E22',
+            'line-color': '#47B1FF',
             'line-width': ['interpolate', ['linear'], ['zoom'], 12, 3, 22, 15]
           }
         },
@@ -89,9 +112,7 @@ const updateSource = (map) => {
             const routeGeoJSON = turf.featureCollection([
               turf.feature(data.trips[0].geometry)
             ]);
-            console.log(routeGeoJSON)
             map.getSource('route').setData(routeGeoJSON);
-            console.log(map.getSource('route'))
           })
       }
     });
