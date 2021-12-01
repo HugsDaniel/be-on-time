@@ -7,12 +7,12 @@ const changeStatus = () => {
         const url = form.action
         fetch(url, {
           method: 'PATCH',
-          // headers: { 'Accept': 'text/plain' },
+          headers: { 'Accept': 'text/plain' },
           body: new FormData(form)
         })
           .then(response => response.text())
           .then((data) => {
-            console.log(data);
+          document.getElementById("bus-status-container").innerHTML = data
           })
       })
     })
