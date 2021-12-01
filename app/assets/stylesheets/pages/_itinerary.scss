@@ -5,6 +5,8 @@
   position:fixed;
   bottom:0;
   padding-top: $base-spacing;
+  height: 39vh;
+  overflow: auto;
 
   .itineraries--summary {
     font-size:18px;

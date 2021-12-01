@@ -22,11 +22,12 @@
   border-radius: 7px;
   padding: 4px;
   font-size: 14px;
-  color: #F4F4F4;
+  color: #F4F4F4 !important;
 }
 
 .sign-in:hover {
   text-decoration: none;
+  color: #F4F4F4 !important;
 }
 
 .fa-sign-out-alt:hover {
