@@ -21,7 +21,7 @@
           class: "form-control w-100 address-input",
           placeholder: "Arrivée"
         %>
-        <div><%= submit_tag "Go", class: "btn btn-primary" %></div>
+        <div id="go" ><%= submit_tag "Go", class: "btn btn-primary" %></div>
     <% end %>
   </div>
 </div>
@@ -85,7 +85,8 @@
   <div class="bookmark">
     <div class="star"><i class="fas fa-star"></i></div>
   </div>
-  <div class="profile">
+  <div class="profile profile-logo">
+    <%= image_tag("single-man-circle.svg", style: "scale:1.2;") %>
     <div class="menu-main">
       <%# <img src="bell.svg" alt="My Happy SVG" /> %>
       <%= image_tag("bell.svg", class: "bell") %>
