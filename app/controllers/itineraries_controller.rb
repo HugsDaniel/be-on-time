@@ -12,11 +12,14 @@ class ItinerariesController < ApplicationController
 
       @itineraries = @itineraries_data.map do |iti|
         bus = Bus.find_or_create_by!(
-          star_bus_id: iti[:bus_id],
-          star_line_short_name: iti[:bus_name],
-          star_line_id: iti[:star_line_id],
-          star_destination: iti[:star_destination]
+          star_bus_id: iti[:bus_id]
         )
+        bus.star_line_short_name = iti[:bus_name]
+        bus.star_line_id = iti[:star_line_id]
+        bus.star_destination = iti[:star_destination]
+
+        bus.save
+
         @colours << Line.find_by(star_line_id: bus.star_line_id).colour
 
         itinerary = Itinerary.create!(

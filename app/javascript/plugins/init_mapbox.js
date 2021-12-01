@@ -23,6 +23,7 @@ const updateSource = (map) => {
 
         const lat = data.records[0].fields.coordonnees[0]
         const lng = data.records[0].fields.coordonnees[1]
+
         marker = new mapboxgl.Marker(element)
         .setLngLat([lng, lat])
         .addTo(map);
@@ -49,24 +50,25 @@ const updateSource = (map) => {
       });
 
       const markers = JSON.parse(mapElement.dataset.markers);
-      markers.forEach((marker) => {
-        const element = document.createElement('div');
-        element.className = 'marker';
-        element.style.backgroundImage = `url('${marker.image_url}')`;
-        element.style.backgroundSize = 'contain';
-        element.style.width = '20px';
-        element.style.height = '20px';
-        element.style.left = '-1px';
-        element.style.top = '-14px';
+      if (markers && markers.length > 0) {
+        markers.forEach((marker) => {
+          const element = document.createElement('div');
+          element.className = 'marker';
+          element.style.backgroundImage = `url('${marker.image_url}')`;
+          element.style.backgroundSize = 'contain';
+          element.style.width = '20px';
+          element.style.height = '20px';
+          element.style.left = '-1px';
+          element.style.top = '-14px';
 
-        new mapboxgl.Marker(element)
-          .setLngLat([marker.lng, marker.lat])
-          .addTo(map);
-      });
-
-      const bounds = new mapboxgl.LngLatBounds();
-      markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
-      map.fitBounds(bounds, { padding: { top: 30, bottom: 320, left: 70, right: 70 }, maxZoom: 15, duration: 0 });
+          new mapboxgl.Marker(element)
+            .setLngLat([marker.lng, marker.lat])
+            .addTo(map);
+        });
+        const bounds = new mapboxgl.LngLatBounds();
+        markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
+        map.fitBounds(bounds, { padding: { top: 30, bottom: 320, left: 70, right: 70 }, maxZoom: 15, duration: 0 });
+      }
 
       updateSource(map)
 
