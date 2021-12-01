@@ -37,9 +37,23 @@ class ItinerariesController < ApplicationController
         )
         itinerary
       end
+      @dep_coordinates = Geocoder.coordinates(params[:departure])
+      @ari_coordinates = Geocoder.coordinates(params[:arrival])
+
+      @markers = [
+        {
+          lat: @dep_coordinates.first,
+          lng: @dep_coordinates.last,
+          image_url: helpers.asset_url('starting_point.svg')
+        },
+        {
+          lat: @ari_coordinates.first,
+          lng: @ari_coordinates.last,
+          image_url: helpers.asset_url('end_point.svg')
+        }
+      ]
 
       @route = @itineraries_data.first[:coordinates] if @itineraries_data.length > 1
-
     end
   end
 
