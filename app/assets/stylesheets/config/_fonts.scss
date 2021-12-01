@@ -20,3 +20,17 @@ $UIfont: "Esti-Reg.woff";
 // Define fonts for body and headers
 $body-font: "Esti-Reg.woff", "Helvetica", "sans-serif";
 $headers-font: "Esti-Reg.woff", "Helvetica", "sans-serif";
+
+
+a {
+  color:inherit !important;
+}
+a:hover {
+  text-decoration: none !important;
+  color:inherit;
+}
+
+a:active {
+  text-decoration: none;
+  color:inherit;
+}

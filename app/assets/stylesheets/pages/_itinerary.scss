@@ -4,11 +4,17 @@
   border-radius:15px 15px 0 0;
   position:fixed;
   bottom:0;
-  height:380px;
   padding-top: $base-spacing;
 
   .itineraries--summary {
     font-size:18px;
+  }
+
+  .sub-info-container {
+    margin-left:8px;
+    display:flex;
+    flex-direction:column;
+    font-size:16px;
   }
   .sub-info {
     color:$grey;
@@ -20,10 +26,38 @@
     border-radius:50%;
     margin-bottom: 4px;
   }
+
+   :last-child {
+    border-bottom: none;
+  }
+}
+
+.trip-title {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  width:97%;
+  h2 {
+    margin:0;
+  }
 }
 
 h2 {
   font-size: 1rem;
+}
+.trip-option {
+  margin-bottom: 14px;
+  border-bottom: 1px double $light-grey;
+  padding-bottom: 1rem;
+}
+
+.starting-point-svg {
+  margin-top:22px;
+}
+
+.ending-point-svg {
+    margin-top:-22px;
 }
 
 .line-tiny {
@@ -31,6 +65,9 @@ h2 {
 }
 
 .trip-step{
+  display:grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
   h2 {
     font-family: $UIfont-bold;
     font-size: 1rem;
@@ -43,9 +80,24 @@ h2 {
 
   img{
     position: relative;
-    left: 5px;
+    left: 3px;
+    width: 32px;
   }
 
+}
+
+.trip-step-journey-infos {
+  display:flex;
+  justify-content: space-between;
+}
+
+.trip-departure {
+  text-align:left;
+}
+
+.trip-ending {
+  text-align:right;
+  margin-right:4px;
 }
 
 
@@ -90,6 +142,10 @@ h2 {
   transition-timing-function: cubic-bezier(.88,.1,.7,.82);
 }
 
+.trip-detail-button {
+  margin-top:-5px;
+}
+
 
 // End
 
@@ -105,6 +161,52 @@ h2 {
   font-family: $UIfont-bold;
   font-size: 100%;
 
+}
+
+
+.btn-line-sm {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  font-family: $UIfont-bold;
+  font-size: 100%;
+  color: black;
+  z-index: 1;
+
+}
+.shortName {
+color:black;
+align-items: center;
+}
+
+.line {
+  border:1px dashed $grey;
+  opacity:.5;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.bus-arrival-time {
+font-size: 12px;
+}
+
+.next-bus {
+font-size: 12px;
+}
+
+.arret-depart {
+font-size: 12px;
+}
+.arret-end {
+font-size: 12px;
+}
+
+
+.trip-logos {
+  width:100%;
 }
 
 .btn-expand {
@@ -147,14 +249,35 @@ h2 {
   padding: 16px;
   border-bottom : 1px solid $light-grey;
 
-  .active {
-    color:$primary;
-  }
+
 }
 
 .bus-status img:not(:last-child) {
   margin-right:10px;
 }
+
+.bus-status-container {
+  display: flex;
+  flex-wrap: wrap;
+  //width: 120px;
+  padding-left: 16px;
+  img {
+    opacity: 0.2;
+    filter: grayscale(1);
+    width:20px;
+  }
+  .active {
+    opacity: 1;
+    filter: grayscale(0);
+  }
+}
+
+
+
+.bus-status-container img:not(:last-child) {
+  margin-right:10px;
+}
+
 
 .bus-info {
   border: solid 1px $light-grey;
@@ -163,7 +286,6 @@ h2 {
 .bus-to-stop {
   color: $light-grey;
 }
-
 
 .left-info {
   display: block ruby;
@@ -184,9 +306,16 @@ h2 {
   color: white;
 }
 
-
 .btn-block {
   font-family: $UIfont;
   font-size: 1.5rem;
   padding: 5px
 }
+// <div class="bus-status-container">
+//               <%= image_tag("smell.svg", class: "#{'active' if iti_bus.bus.bad_smell_level}") %>
+//               <%= image_tag("trash.svg",class: "#{'active' if iti_bus.bus.cleanliness_level}") %>
+//               <%= image_tag("agent.svg",class: "#{'active' if iti_bus.bus.agent}") %>
+//               <%= image_tag("noise.svg",class: "#{'active' if iti_bus.bus.noise_level}") %>
+//               <%= image_tag("unsafe.svg",class: "#{'active' if iti_bus.bus.safetiness}") %>
+//               <%= image_tag("crowded.svg", class: "#{'active' if iti_bus.bus.crowd_level}") %>
+//             </div>

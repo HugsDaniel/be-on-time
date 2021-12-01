@@ -14,13 +14,15 @@ class ItinerariesController < ApplicationController
         bus = Bus.find_or_create_by!(
           star_bus_id: iti[:bus_id]
         )
+
         bus.star_line_short_name = iti[:bus_name]
         bus.star_line_id = iti[:star_line_id]
         bus.star_destination = iti[:star_destination]
 
         bus.save
 
-        @colours << Line.find_by(star_line_id: bus.star_line_id).colour
+        @colours << Line.find_by(star_line_id: bus.star_line_id)&.colour
+
 
         itinerary = Itinerary.create!(
           user: current_user,
@@ -39,9 +41,16 @@ class ItinerariesController < ApplicationController
           arrival_time: iti[:arrival_time]
         )
         itinerary
+        # @itinerary = Itinerary.find(params[:id])
+        # @iti_bus = @itinerary.itinerary_buses.first
+        # @bus = @iti_bus.bus
+        # @direction = @bus.star_destination
+        # @star_short_name = @bus.star_line_short_name
+
       end
       @dep_coordinates = Geocoder.coordinates(params[:departure])
       @ari_coordinates = Geocoder.coordinates(params[:arrival])
+
 
       @markers = [
         {
@@ -57,6 +66,7 @@ class ItinerariesController < ApplicationController
       ]
 
       @route = @itineraries_data.first[:coordinates] if @itineraries_data.length > 1
+      
     end
   end
 
@@ -69,7 +79,15 @@ class ItinerariesController < ApplicationController
     @direction = @bus.star_destination
     @star_short_name = @bus.star_line_short_name
     @colour_line = Line.find_by(star_line_id: @bus[:star_line_id]).colour
+
+    @image_thief = thief()
+    @image_agent = agent()
+    @image_speaker = speaker()
+    @image_garbage = garbage()
+    @image_people = people()
+    @image_nose = nose()
     @image_url = helpers.asset_url('bus_marker3.png')
+
   end
 
   def favorites
