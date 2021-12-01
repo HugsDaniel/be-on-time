@@ -44,19 +44,19 @@ class ItinerariesController < ApplicationController
           arrival_time: iti[:arrival_time]
         )
         itinerary
-        @itinerary = Itinerary.find(params[:id])
-        @iti_bus = @itinerary.itinerary_buses.first
-        @bus = @iti_bus.bus
-        @direction = @bus.star_destination
-        @star_short_name = @bus.star_line_short_name
+        # @itinerary = Itinerary.find(params[:id])
+        # @iti_bus = @itinerary.itinerary_buses.first
+        # @bus = @iti_bus.bus
+        # @direction = @bus.star_destination
+        # @star_short_name = @bus.star_line_short_name
 
       end
-      @image_thief = thief()
-      @image_agent = agent()
-      @image_speaker = speaker()
-      @image_garbage = garbage()
-      @image_people = people()
-      @image_nose = nose()
+      # @image_thief = thief()
+      # @image_agent = agent()
+      # @image_speaker = speaker()
+      # @image_garbage = garbage()
+      # @image_people = people()
+      # @image_nose = nose()
       @route = @itineraries_data.first[:coordinates]
     end
   end
@@ -66,7 +66,7 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find(params[:id])
     # @email = @itinerary.user.email
-    
+
     @iti_bus = @itinerary.itinerary_buses.first
     @bus = @iti_bus.bus
     @direction = @bus.star_destination

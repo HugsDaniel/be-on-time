@@ -1,6 +1,6 @@
  <div class="d-none" id="coordinates" data-coordinates="<%= @route %>"></div>
 
-<div >
+<div>
   <div class="container">
     <%= form_tag itineraries_path, method: :get, html: { class: 'itineraries' }  do %>
       <%= text_field_tag :departure,
@@ -54,45 +54,43 @@
             <% itinerary.itinerary_buses.each_with_index do |iti_bus, index| %>
               <div class="trip-logos">
                 <div class="trip-step ">
-                <div class="btn-line-sm" style=" color: black; background-color:<%= @colours[index] %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;"> <span class="shortName"><%= @star_short_name %></span></div>
-                  <div class="arret-depart">Arret</div>
-                  <div class="next-bus"><%= arrives_after(iti_bus.departing_time).abs %> min</div>
+                  <div class="btn-line-sm" style=" color: black; background-color:<%= @colours[index] %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;"> <span class="shortName"><%= @star_short_name %></span></div>
+                    <div class="arret-depart">Arret</div>
+                    <div class="next-bus"><%= arrives_after(iti_bus.departing_time).abs %> min</div>
+                  </div>
                 </div>
-            <% end %>
 
-              <div class="line"></div>
 
                 <h3><%= iti_bus.bus.star_line_short_name %></h3>
                 <h2><%= arrives_after(iti_bus.departing_time) %> min</h2>
+
+                <div class="line"></div>
+
+                <div class="trip-step">
+                  <%= image_tag("end_point.svg")%>
+                  <div class="arret-end">Arret</div>
+                    <div class="bus-arrival-time"><%= trip_time(itinerary.arrival_time) %> min </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bus-status-container">
+
+                <%= image_tag("smell.svg",class: "active") if iti_bus.bus.bad_smell_level %>
+                <%= image_tag("trash.svg",class: "active") if iti_bus.bus.cleanliness_level %>
+                <%= image_tag("agent.svg",class: "active") if iti_bus.bus.agent %>
+                <%= image_tag("noise.svg",class: "active") if iti_bus.bus.noise_level %>
+                <%= image_tag("unsafe.svg",class: "active") if iti_bus.bus.safetiness %>
+                <%= image_tag("crowded.svg", class: "active") if iti_bus.bus.crowd_level %>
+              </div>
+
+              <div class="trip-detail-button align-self-center">
+                <%= link_to itinerary_path(itinerary) do %>
+                  <%= image_tag("arrow.svg")%>
+                <% end %>
               </div>
             <% end %>
-
-            <div class="trip-step">
-              <%= image_tag("end_point.svg")%>
-              <div class="arret-end">Arret</div>
-                <div class="bus-arrival-time"><%= trip_time(itinerary.arrival_time) %> min </div>
-              </div>
-            </div>
-
-            <div class="bus-status-container">
-
-            <%= image_tag("smell.svg",class: "active")%>
-            <%= image_tag("trash.svg",class: "active")%>
-            <%= image_tag("agent.svg",class: "active")%>
-            <%= image_tag("noise.svg",class: "active")%>
-            <%= image_tag("unsafe.svg",class: "active")%>
-            <%= image_tag("crowded.svg")%>
-            </div>
-
-            <div class="trip-detail-button align-self-center">
-              <%= link_to itinerary_path(itinerary) do %>
-              <%= image_tag("arrow.svg")%>
-              <% end %>
-            </div>
           </div>
-
-
-
         </div>
       <% end %>
     </div>
