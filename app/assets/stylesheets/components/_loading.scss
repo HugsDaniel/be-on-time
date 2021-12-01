@@ -4,4 +4,10 @@
     position: fixed;
     background-color: white;
     z-index: 1000;
+    svg {
+        scale: 2;
+        path {
+           fill: $primary;
+        }
+    }
 }
