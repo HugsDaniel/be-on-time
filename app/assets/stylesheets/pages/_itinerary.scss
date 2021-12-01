@@ -9,9 +9,15 @@
   .itineraries--summary {
     font-size:18px;
   }
+
+  .sub-info-container {
+    margin-left:8px;
+    display:flex;
+    flex-direction:column;
+    font-size:16px;
+  }
   .sub-info {
     color:$grey;
-    margin-left: 8px;
   }
 
   .line-logo{
@@ -26,6 +32,17 @@
   }
 }
 
+.trip-title {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  width:97%;
+  h2 {
+    margin:0;
+  }
+}
+
 h2 {
   font-size: 1rem;
 }
@@ -35,12 +52,22 @@ h2 {
   padding-bottom: 1rem;
 }
 
+.starting-point-svg {
+  margin-top:22px;
+}
+
+.ending-point-svg {
+    margin-top:-22px;
+}
 
 .line-tiny {
   position: relative;
 }
 
 .trip-step{
+  display:grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
   h2 {
     font-family: $UIfont-bold;
     font-size: 1rem;
@@ -57,6 +84,20 @@ h2 {
     width: 32px;
   }
 
+}
+
+.trip-step-journey-infos {
+  display:flex;
+  justify-content: space-between;
+}
+
+.trip-departure {
+  text-align:left;
+}
+
+.trip-ending {
+  text-align:right;
+  margin-right:4px;
 }
 
 
@@ -101,6 +142,10 @@ h2 {
   transition-timing-function: cubic-bezier(.88,.1,.7,.82);
 }
 
+.trip-detail-button {
+  margin-top:-5px;
+}
+
 
 // End
 
@@ -125,6 +170,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction:column;
   font-family: $UIfont-bold;
   font-size: 100%;
   color: black;
@@ -137,10 +183,10 @@ align-items: center;
 }
 
 .line {
-  height: 1px;
-  background-color: $grey;
-  width: 50%;
-  margin-bottom: 2.5rem;
+  border:1px dashed $grey;
+  opacity:.5;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .bus-arrival-time {
@@ -160,11 +206,7 @@ font-size: 12px;
 
 
 .trip-logos {
-  width: 40%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+  width:100%;
 }
 
 .btn-expand {
@@ -217,15 +259,20 @@ font-size: 12px;
 .bus-status-container {
   display: flex;
   flex-wrap: wrap;
-  width: 120px;
+  //width: 120px;
   padding-left: 16px;
-
+  img {
+    opacity: 0.2;
+    filter: grayscale(1);
+    width:20px;
+  }
+  .active {
+    opacity: 1;
+    filter: grayscale(0);
+  }
 }
 
-.active {
-opacity: 0.1;
-filter: grayscale(1);
-}
+
 
 .bus-status-container img:not(:last-child) {
   margin-right:10px;
@@ -264,3 +311,11 @@ filter: grayscale(1);
   font-size: 1.5rem;
   padding: 5px
 }
+// <div class="bus-status-container">
+//               <%= image_tag("smell.svg", class: "#{'active' if iti_bus.bus.bad_smell_level}") %>
+//               <%= image_tag("trash.svg",class: "#{'active' if iti_bus.bus.cleanliness_level}") %>
+//               <%= image_tag("agent.svg",class: "#{'active' if iti_bus.bus.agent}") %>
+//               <%= image_tag("noise.svg",class: "#{'active' if iti_bus.bus.noise_level}") %>
+//               <%= image_tag("unsafe.svg",class: "#{'active' if iti_bus.bus.safetiness}") %>
+//               <%= image_tag("crowded.svg", class: "#{'active' if iti_bus.bus.crowd_level}") %>
+//             </div>

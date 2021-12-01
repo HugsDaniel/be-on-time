@@ -25,7 +25,7 @@ class ItinerariesController < ApplicationController
           star_line_id: iti[:star_line_id],
           star_destination: iti[:star_destination]
         )
-        @colours << Line.find_by(star_line_id: bus.star_line_id).colour
+        @colours << Line.find_by(star_line_id: bus.star_line_id)&.colour
 
         itinerary = Itinerary.create!(
           user: current_user,
