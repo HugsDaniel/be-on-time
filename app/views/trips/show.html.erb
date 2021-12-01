@@ -22,7 +22,7 @@
 </div>
 
 <div id="info-btn" style="bottom: 21.265vh;" class="profile">
-  <div class="info" id="i">i</div>
+  <div class="info" id="i"> <%= image_tag("info-menu.svg")%> </div>
   <div class="info" id="x"><i class="fas fa-times"></i></div>
 </div>
 
@@ -50,18 +50,9 @@
           <div class="left-info">
             <%= image_tag("bus.svg")%>
           </div>
-          <div class="right-info">
-            <div>
-              <div class="status-svg">
-                <%= @image_garbage.html_safe if (@bus.cleanliness_level)%>
-                <%= @image_thief.html_safe if @bus.safetiness%>
-                <%= @image_speaker.html_safe if @bus.noise_level%>
-                <%= @image_nose.html_safe if @bus.bad_smell_level%>
-                <%= @image_people.html_safe if  @bus.crowd_level%>
-                <%= @image_agent.html_safe if @bus.agent%>
-                </div>
-              <div class="d-none" id="bus-id" data-id="<% @bus.star_bus_id %>"></div>
-            </div>
+
+          <div class="right-info" id="bus-status-container">
+            <%= render "buses/status", bus: @bus, image_garbage: @image_garbage, image_thief: @image_thief, image_speaker: @image_speaker, image_nose: @image_nose, image_people: @image_people, image_agent: @image_agent %>
           </div>
         </div>
 
