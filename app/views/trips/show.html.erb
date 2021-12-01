@@ -18,8 +18,10 @@
         </div>
     </div>
 
-
 </div>
+
+<div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
+<div clas="d-none" id="bus-img" data-url="<%= @image_url %>"></div>
 
 <div id="info-btn" style="bottom: 21.265vh;" class="profile">
   <div class="info" id="i"> <%= image_tag("info-menu.svg")%> </div>
@@ -49,6 +51,7 @@
         <div class="d-flex justify-content-between">
           <div class="left-info">
             <%= image_tag("bus.svg")%>
+           <div>Arrivée dans <span class="bus-arrival"><%= trip_time(@itinerary.arrival_time) %></span> min.</div>
           </div>
           <div class="right-info" id="bus-status-container">
             <%= render "buses/status", bus: @bus, image_garbage: @image_garbage, image_thief: @image_thief, image_speaker: @image_speaker, image_nose: @image_nose, image_people: @image_people, image_agent: @image_agent %>

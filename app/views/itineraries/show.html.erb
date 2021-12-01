@@ -27,7 +27,7 @@
         <div class="d-flex justify-content-between">
           <div class="left-info">
             <%= image_tag("bus.svg")%>
-            <span class="bus-to-stop">prochain bus : <%= arrives_after(@iti_bus.departing_time) %> min.</span>
+            <span class="bus-to-stop">prochain bus : <span class="bus-arrival"><%= arrives_after(@iti_bus.departing_time) %></span> min.</span>
           </div>
           <div class="right-info">
               <div class="status-svg">
@@ -38,6 +38,8 @@
                 <%= @image_people.html_safe if  @bus.crowd_level%>
                 <%= @image_agent.html_safe if @bus.agent%>
                 </div>
+              <div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
+              <div clas="d-none" id="bus-img" data-url="<%= @image_url %>"></div>
           </div>
         </div>
       <%= link_to trip_path(@itinerary) do %>

@@ -55,7 +55,7 @@ class FetchItineraryService
       coordinates = ""
       all_stops.each_with_index do |stop, index|
         if (departure_stop_index..arrival_stop_index).to_a.include?(index)
-          coordinates += "#{stop["fields"]["coordonnees"].join(",")};"
+          coordinates += "#{stop["fields"]["coordonnees"].reverse.join(",")};"
         end
       end
 
@@ -68,7 +68,7 @@ class FetchItineraryService
         arrival_time: passagea['fields']['arrivee'],
         star_line_id: passagea['fields']['idligne'],
         star_destination: passagea['fields']['destination'],
-        coordinates: coordinates
+        coordinates: coordinates.delete_suffix(";")
       }
     end.reject(&:nil?).first(3)
 

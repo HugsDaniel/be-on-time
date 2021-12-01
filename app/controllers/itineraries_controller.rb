@@ -7,25 +7,22 @@ class ItinerariesController < ApplicationController
       @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
       @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
 
-      p @departing
-      p @arrival
-
-      # @departing = BusStop.near(from, 1.5, order: :distance).first
-      # @arrival = BusStop.near(to, 1.5, order: :distance).first
-      # @departing = @itinerary[:starting_point]
-      # @arrival = @itinerary[:end_point]
-
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       @colours = []
 
       @itineraries = @itineraries_data.map do |iti|
         bus = Bus.find_or_create_by!(
-          star_bus_id: iti[:bus_id],
-          star_line_short_name: iti[:bus_name],
-          star_line_id: iti[:star_line_id],
-          star_destination: iti[:star_destination]
+          star_bus_id: iti[:bus_id]
         )
+
+        bus.star_line_short_name = iti[:bus_name]
+        bus.star_line_id = iti[:star_line_id]
+        bus.star_destination = iti[:star_destination]
+
+        bus.save
+
         @colours << Line.find_by(star_line_id: bus.star_line_id)&.colour
+
 
         itinerary = Itinerary.create!(
           user: current_user,
@@ -51,12 +48,27 @@ class ItinerariesController < ApplicationController
         # @star_short_name = @bus.star_line_short_name
 
       end
+      @dep_coordinates = Geocoder.coordinates(params[:departure])
+      @ari_coordinates = Geocoder.coordinates(params[:arrival])
 
-      @route = @itineraries_data.first[:coordinates]
+
+      @markers = [
+        {
+          lat: @dep_coordinates.first,
+          lng: @dep_coordinates.last,
+          image_url: helpers.asset_url('starting_point.svg')
+        },
+        {
+          lat: @ari_coordinates.first,
+          lng: @ari_coordinates.last,
+          image_url: helpers.asset_url('end_point.svg')
+        }
+      ]
+
+      @route = @itineraries_data.first[:coordinates] if @itineraries_data.length > 1
+      
     end
   end
-
-
 
   def show
     @itinerary = Itinerary.find(params[:id])
@@ -67,12 +79,15 @@ class ItinerariesController < ApplicationController
     @direction = @bus.star_destination
     @star_short_name = @bus.star_line_short_name
     @colour_line = Line.find_by(star_line_id: @bus[:star_line_id]).colour
+
     @image_thief = thief()
     @image_agent = agent()
     @image_speaker = speaker()
     @image_garbage = garbage()
     @image_people = people()
     @image_nose = nose()
+    @image_url = helpers.asset_url('bus_marker3.png')
+
   end
 
   def favorites
