@@ -3,8 +3,8 @@ import { gsap } from "gsap";
 const checkAnimation = () => {
     if (document.querySelector('.check')) {
             const tl = gsap.timeline();
-            tl.to('.circle', {duration: 4, opacity: 1, strokeDashoffset:0, strokeWidth:4})
-            .to('.check',  {duration: 1.6, opacity: 1, strokeDashoffset:0}, "<1" );
+            tl.to('.circle', {duration: 2.5, opacity: 1, strokeDashoffset:0, strokeWidth:4})
+            .to('.check',  {duration: 1.5, opacity: 1, strokeDashoffset:0}, "<0.75" );
     };
 }
 
