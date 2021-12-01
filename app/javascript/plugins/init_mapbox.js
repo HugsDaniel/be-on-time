@@ -10,7 +10,7 @@ const updateSource = (map) => {
   if (bus) {
     const idBus = bus.dataset.id
     const image_url = image.dataset.url
-    fetch(`https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-position-tr&q=&sort=idbus&facet=numerobus&facet=nomcourtligne&facet=sens&facet=destination&refine.idbus=${idBus}`)
+    fetch(`https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-position-tr&q=&sort=idbus&facet=numerobus&facet=nomcourtligne&facet=sens&facet=destination&refine.idbus=${idBus}&apikey=75c8827dffd58d7e41b4b42de99ef7de9603f4f8cb28cf4bc9746306`)
       .then(response => response.json())
       .then((data) => {
         // Create a HTML element for your custom marker
@@ -23,11 +23,10 @@ const updateSource = (map) => {
 
         const lat = data.records[0].fields.coordonnees[0]
         const lng = data.records[0].fields.coordonnees[1]
-        if (marker) { marker.remove() }
 
         marker = new mapboxgl.Marker(element)
-          .setLngLat([lng, lat])
-          .addTo(map);
+        .setLngLat([lng, lat])
+        .addTo(map);
 
 
         map.flyTo({
@@ -35,22 +34,23 @@ const updateSource = (map) => {
           speed: 30
         })
       })
+    }
   }
-}
 
-const initMapbox = () => {
-  const mapElement = document.getElementById('map');
-  if (mapElement) { // only build a map if there's a div#map to inject into
-    mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/stanouuuu/ckwc8mhxk5ha815qnyxryrxb3',
-      center: [-1.6777926, 48.11], // starting position [lng, lat]
-      zoom: 13
-    });
-    updateSource(map)
+  const initMapbox = () => {
+    const mapElement = document.getElementById('map');
+    if (mapElement) { // only build a map if there's a div#map to inject into
+      mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+      const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/stanouuuu/ckwc8mhxk5ha815qnyxryrxb3',
+        center: [-1.6777926, 48.11], // starting position [lng, lat]
+        zoom: 13
+      });
+      updateSource(map)
 
-    setInterval(async () => {
+      setInterval(async () => {
+      if (marker) { marker.remove() }
       updateSource(map)
     }, 7000)
 

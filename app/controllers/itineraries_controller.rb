@@ -38,7 +38,7 @@ class ItinerariesController < ApplicationController
         itinerary
       end
 
-      @route = @itineraries_data.first[:coordinates]
+      @route = @itineraries_data.first[:coordinates] if @itineraries_data.length > 1
 
     end
   end
