@@ -38,6 +38,8 @@
                 <%= @image_people.html_safe if  @bus.crowd_level%>
                 <%= @image_agent.html_safe if @bus.agent%>
                 </div>
+              <div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
+              <div clas="d-none" id="bus-img" data-url="<%= @image_url %>"></div>
           </div>
         </div>
       <%= link_to trip_path(@itinerary) do %>

@@ -13,7 +13,8 @@
     "places.js": "^1.19.0",
     "popper.js": "^1.16.1",
     "stimulus": "^3.0.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "turf": "^3.0.14"
   },
   "version": "0.1.0",
   "devDependencies": {
