@@ -7,7 +7,12 @@
     svg {
         scale: 2;
         path {
-           fill: $primary;
+           stroke: $primary;
         }
     }
+}
+
+.loader {
+    position: relative;
+    left: -80px;
 }
