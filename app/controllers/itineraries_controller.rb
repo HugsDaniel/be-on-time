@@ -3,14 +3,15 @@ class ItinerariesController < ApplicationController
     if params[:departure].present? && params[:arrival].present?
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
-
+      
       @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
       @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
-
+      
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       @colours = []
-
+      
       @itineraries = @itineraries_data.map do |iti|
+        
         bus = Bus.find_or_create_by!(
           star_bus_id: iti[:bus_id]
         )
@@ -26,6 +27,7 @@ class ItinerariesController < ApplicationController
           starting_point: iti[:starting_point],
           end_point: iti[:end_point],
           departing_time: iti[:departing_time],
+
           arrival_time: iti[:arrival_time],
           route: iti[:coordinates],
           colour: Line.find_by(star_line_id: bus.star_line_id)&.colour || "#47B1FF"
@@ -113,6 +115,41 @@ class ItinerariesController < ApplicationController
   end
 
   def favorites
+    @itineraries_fav = Itinerary.where(favorite: true).to_a
+
+    
+    
+    
+    @colours =[]
+    @itineraries = @itineraries_fav.map.with_index do |itinerary, index|
+      @departing = Geocoder.coordinates(itinerary.starting_point).join(",")+",400"
+      @arrival = Geocoder.coordinates(itinerary.end_point).join(",")+",400"
+      
+      @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
+      iti = @itineraries_data.first
+      @bus = Bus.find(itinerary.bus_ids[0])
+      if Line.where(:star_line_id => @bus.star_line_id).first
+        @colours << Line.find_by(star_line_id: @bus.star_line_id).colour
+      else
+        @colours << "#47B1FF"
+      end
+
+      @bus.star_line_short_name = iti[:bus_name]
+      itinerary.update(
+        user: current_user,
+        departing_time: iti[:departing_time],
+        arrival_time: iti[:arrival_time]
+      )
+      itinerary.itinerary_buses.update(
+        bus: @bus,
+        itinerary: itinerary,
+        starting_point: itinerary.starting_point,
+        end_point: itinerary.end_point,
+        departing_time: iti[:departing_time],
+        arrival_time: iti[:arrival_time]
+      )
+      
+    end  
   end
 
   private
@@ -133,3 +170,4 @@ class ItinerariesController < ApplicationController
   end
 
 end
+
