@@ -41,9 +41,10 @@ const animatePointAlongLine = (map, routeGeoJSON, followCam = false) => {
     'source': 'point',
     'type': 'symbol',
     'layout': {
-      'icon-image': 'bus',
-      'icon-rotate': ['get', 'bearing'],
-      'icon-rotation-alignment': 'map',
+      'icon-image': 'Vectorbus-marker',
+      // 'icon-rotate': ['get', 'bearing'],
+      "icon-size": 0.1,
+      'icon-rotation-alignment': 'viewport',
       'icon-allow-overlap': true,
       'icon-ignore-placement': true
     }
@@ -80,7 +81,7 @@ const animatePointAlongLine = (map, routeGeoJSON, followCam = false) => {
 
       map.flyTo({
         center: point.features[0].geometry.coordinates,
-        speed: 0.1,
+        speed: 0.2,
         curve: 1,
         easing(t) {
           return t;
@@ -298,7 +299,7 @@ const initIndexMapbox = () => {
       });
       const bounds = new mapboxgl.LngLatBounds();
       markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
-      map.fitBounds(bounds, { padding: { top: 30, bottom: 320, left: 70, right: 70 }, maxZoom: 15, duration: 0 });
+      map.fitBounds(bounds, { padding: { top: 30, bottom: 310, left: 40, right: 40 }, maxZoom: 16, duration: 0 });
     }
 
     // updateSource(map)
