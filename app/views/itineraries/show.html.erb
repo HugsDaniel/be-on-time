@@ -57,7 +57,8 @@
         <div class="d-flex justify-content-between">
           <div class="left-info">
             <%= image_tag("bus.svg")%>
-           <div class="bus-arrival">Le bus sera là dans <span class="bus-arrival"><%= trip_time(@itinerary.arrival_time) %></span> min.</div>
+           <div id="time-bus">Bus dans <span class="bus-arrival"><%= arrives_after(@itinerary.departing_time) %></span> min.</div>
+           <div id="time-arrive" class="d-none">Arrivée dans:<span class="bus-arrival"><%= trip_time(@itinerary.arrival_time) %></span> min.</div>
           </div>
 
           <div class="right-info" id="bus-status-container">
