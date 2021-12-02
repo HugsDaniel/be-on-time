@@ -129,6 +129,7 @@ const initShowMapbox = () => {
   const mapElement = document.getElementById('map');
   const showElement = document.getElementById('show')
 
+
   if (mapElement && showElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 
@@ -173,6 +174,8 @@ const initShowMapbox = () => {
           },
           paint: {
             'line-color': `#47B1FF`,
+            'line-dasharray': [0.1, 4],
+            'line-opacity': 0.7,
             'line-width': ['interpolate', ['linear'], ['zoom'], 12, 3, 22, 15]
           }
         },

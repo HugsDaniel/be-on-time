@@ -4,7 +4,7 @@ const updateTime = () => {
     times.forEach((time) => {
       setInterval(async () => {
         if (time.innerHTML > 0) time.innerHTML -= 1
-      }, 6000)
+      }, 60000)
     })
   }
 }
