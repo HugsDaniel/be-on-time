@@ -3,29 +3,30 @@ class ItinerariesController < ApplicationController
     if params[:departure].present? && params[:arrival].present?
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
-
+      
       @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
       @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
-
+      
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       @colours = []
-
+      
       @itineraries = @itineraries_data.map do |iti|
+        
         bus = Bus.find_or_create_by!(
           star_bus_id: iti[:bus_id],
           star_line_short_name: iti[:bus_name],
           star_line_id: iti[:star_line_id],
           star_destination: iti[:star_destination]
-        )
-        @colours << Line.find_by(star_line_id: bus.star_line_id).colour
-
+          )
+          @colours << Line.find_by(star_line_id: bus.star_line_id).colour
+          
         itinerary = Itinerary.create!(
           user: current_user,
           starting_point: iti[:starting_point],
           end_point: iti[:end_point],
           departing_time: iti[:departing_time],
           arrival_time: iti[:arrival_time]
-        )
+        ) 
 
         ItineraryBus.create!(
           bus: bus,
@@ -56,23 +57,39 @@ class ItinerariesController < ApplicationController
   end
 
   def favorites
-    @itineraries_fav = Itinerary.find_by(favorite: true)
+    @itineraries_fav = Itinerary.where(favorite: true).to_a
 
-
-    @departing = Geocoder.coordinates(@itineraries_fav.starting_point).join(",")+",200"
-    @arrival = Geocoder.coordinates(@itineraries_fav.end_point).join(",")+",200"
-
-    @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
-
-    @iti_bus = @itineraries_fav.itinerary_buses.first
-    @bus = @iti_bus.bus
+    
     @colours = Line.find_by(star_line_id: 1).colour
-
-    itineraries_fav = itineraries_fav.update(
-      user: current_user,
-      departing_time: @itineraries_data[:departing_time],
-      arrival_time: @itineraries_data[:arrival_time]
-    )
-
+    
+    
+    
+    @itineraries = @itineraries_fav.map do |itinerary|
+      
+      @departing = Geocoder.coordinates(itinerary.starting_point).join(",")+",100"
+      @arrival = Geocoder.coordinates(itinerary.end_point).join(",")+",100"
+      
+      @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
+      
+      @itineraries_data.each do |iti|
+        
+        @iti_bus = itinerary.itinerary_buses.first
+        @bus = @iti_bus.bus
+        itinerary.update(
+          user: current_user,
+          departing_time: iti[:departing_time],
+          arrival_time: iti[:arrival_time]
+        )
+        itinerary.itinerary_buses.update(
+          bus: @bus,
+          itinerary: itinerary,
+          starting_point: itinerary.starting_point,
+          end_point: itinerary.end_point,
+          departing_time: iti[:departing_time],
+          arrival_time: iti[:arrival_time]
+        )
+        
+      end
+    end
   end
 end
