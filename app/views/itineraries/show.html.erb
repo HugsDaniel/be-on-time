@@ -11,7 +11,6 @@
 
       <div class="btn-line-big" style="background-color:<%= @colour_line %>; font-size:<%= 64 / @star_short_name.length%>px;"> <%= @star_short_name %></div>
 
-      <div class="btn-expand btn-rotate"> <%= image_tag("expand.svg")%> </div>
     </div>
 
     <div class="direction-terminus">
@@ -45,33 +44,6 @@
       <%= link_to trip_path(@itinerary) do %>
         <div class="mt-3 btn btn-primary btn-block btn-fade">Je suis dans le bus</div>
       <% end %>
-    </div>
-    <%# End %>
-
-    <div class="bus-infos d-flex">
-      <div class="left-info">
-        <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">bus suivant dans : 15 min.</span>
-      </div>
-      <div class="right-info">
-        <div class="bus-status">
-          <%= image_tag("noise.svg")%>
-          <%= image_tag("smell.svg")%>
-        </div>
-      </div>
-    </div>
-
-    <div class="bus-infos d-flex">
-      <div class="left-info">
-        <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">bus suivant dans : 20 min.</span>
-      </div>
-      <div class="right-info">
-        <div class="bus-status">
-          <%= image_tag("agent.svg")%>
-          <%= image_tag("noise.svg")%>
-        </div>
-      </div>
     </div>
   </div>
 </div>

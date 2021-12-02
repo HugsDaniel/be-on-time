@@ -126,30 +126,8 @@ h2 {
   position:fixed;
   bottom:0;
   padding: $base-spacing 0;
-  transition:.25s;
-  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
 }
 
-// Collapse anim
-
-.itinerary-collapse {
-  transform:translateY(120px);
-  transition:.25s;
-  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
-}
-
-.btn-rotate {
-  transform:rotate(180deg);
-  transition:.25s;
-  transition-timing-function: cubic-bezier(.88,.1,.7,.82);
-}
-
-.trip-detail-button {
-  margin-top:-5px;
-}
-
-
-// End
 
 .btn-line-big {
   width: 55px; height: 55px;
