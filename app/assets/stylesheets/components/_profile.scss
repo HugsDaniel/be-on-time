@@ -8,7 +8,11 @@
     height: 83px;
     z-index: 1;
 }
-
+.profile-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .menu-main {
     position: absolute;
     bottom: -22.735vh;

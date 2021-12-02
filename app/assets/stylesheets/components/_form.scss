@@ -5,8 +5,18 @@ input {
 
 .arrival {
   margin-top: $base-spacing;
+  position: relative;
 }
 
 .itineraries {
   padding-top: $base-spacing;
+}
+
+#go {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  .btn-primary {
+    padding: 0px 12px;
+  }
 }

@@ -5,17 +5,22 @@
   font-size: 1.2rem;
 }
 
+.btn-primary:active {
+  color:$white !important;
+}
+
 .sign-up {
   background-color: #47B1FF;
-  color: #F4F4F4;
+  color: #F4F4F4 !important;
   padding: 8px 47px;
   margin: 0 auto;
   font-size: 20px;
   border-radius: 7px;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.2);
+
 }
 
 .sign-up:hover {
   text-decoration: none;
-  color: #F4F4F4;
+  color: #F4F4F4 !important;
 }

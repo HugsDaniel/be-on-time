@@ -13,13 +13,17 @@ class ItinerariesController < ApplicationController
       @itineraries = @itineraries_data.map do |iti|
         
         bus = Bus.find_or_create_by!(
-          star_bus_id: iti[:bus_id],
-          star_line_short_name: iti[:bus_name],
-          star_line_id: iti[:star_line_id],
-          star_destination: iti[:star_destination]
-          )
-          @colours << Line.find_by(star_line_id: bus.star_line_id).colour
-          
+          star_bus_id: iti[:bus_id]
+        )
+
+        bus.star_line_short_name = iti[:bus_name]
+        bus.star_line_id = iti[:star_line_id]
+        bus.star_destination = iti[:star_destination]
+
+        bus.save
+
+        @colours << Line.find_by(star_line_id: bus.star_line_id)&.colour
+        
         itinerary = Itinerary.create!(
           user: current_user,
           starting_point: iti[:starting_point],
@@ -37,10 +41,32 @@ class ItinerariesController < ApplicationController
           arrival_time: iti[:arrival_time]
         )
         itinerary
+        # @itinerary = Itinerary.find(params[:id])
+        # @iti_bus = @itinerary.itinerary_buses.first
+        # @bus = @iti_bus.bus
+        # @direction = @bus.star_destination
+        # @star_short_name = @bus.star_line_short_name
+
       end
+      @dep_coordinates = Geocoder.coordinates(params[:departure])
+      @ari_coordinates = Geocoder.coordinates(params[:arrival])
+
+
+      @markers = [
+        {
+          lat: @dep_coordinates.first,
+          lng: @dep_coordinates.last,
+          image_url: helpers.asset_url('starting_point.svg')
+        },
+        {
+          lat: @ari_coordinates.first,
+          lng: @ari_coordinates.last,
+          image_url: helpers.asset_url('end_point.svg')
+        }
+      ]
 
       @route = @itineraries_data.first[:coordinates] if @itineraries_data.length > 1
-
+      
     end
   end
 
@@ -53,7 +79,15 @@ class ItinerariesController < ApplicationController
     @direction = @bus.star_destination
     @star_short_name = @bus.star_line_short_name
     @colour_line = Line.find_by(star_line_id: @bus[:star_line_id]).colour
+
+    @image_thief = thief()
+    @image_agent = agent()
+    @image_speaker = speaker()
+    @image_garbage = garbage()
+    @image_people = people()
+    @image_nose = nose()
     @image_url = helpers.asset_url('bus_marker3.png')
+
   end
 
   def favorites

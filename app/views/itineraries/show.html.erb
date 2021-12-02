@@ -27,7 +27,7 @@
         <div class="d-flex justify-content-between">
           <div class="left-info">
             <%= image_tag("bus.svg")%>
-            <span class="bus-to-stop">prochain bus : <%= arrives_after(@iti_bus.departing_time) %> min.</span>
+            <span class="bus-to-stop">prochain bus : <span class="bus-arrival"><%= arrives_after(@iti_bus.departing_time) %></span> min.</span>
           </div>
           <div class="right-info">
               <div class="status-svg">

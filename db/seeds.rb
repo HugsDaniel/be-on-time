@@ -131,8 +131,6 @@ buses.each do |bus|
     star_line_id: bus['fields']['idligne'].to_i,
     star_direction_code: bus['fields']['sens'].to_i
   )
-#   new_bus.route = Route.find_by(star_line_id: bus['fields']['idligne'], arrival_stop: bus['fields']['destination'])
-#   new_bus.line = Line.find_by(star_line_id: bus['fields']['idligne'])
   new_bus.save!
 end
 puts "Done !"
@@ -179,16 +177,16 @@ itinerary.save!
 itinerary_two = Itinerary.new(
   starting_point: "Plélo Colombier 35000 Rennes",
   end_point: "2 Av de Ker Lann 35170 Bruz",
-  favorite: true
+  favorite: false
 )
 
 itinerary_two.user = user_two
 itinerary_two.save!
 
 itinerary_three = Itinerary.new(
-  starting_point: "Place de la République, Rennes, Bretagne, France",
-  end_point: "Bruz, Bretagne, France",
-  favorite: true
+  starting_point: "18 Rue de Bertrand, 35000 Rennes",
+  end_point: "1 Sq. du Chêne Germain, 35510 Cesson-Sévigné",
+  favorite: false
 )
 
 itinerary_three.user = user_three
