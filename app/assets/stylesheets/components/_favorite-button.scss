@@ -12,17 +12,13 @@
     right: 30px;
 }
 
-.form-check-input {
-    opacity:0;
-}
+#star{
+    position: absolute;
+    right: 6vw;
+    scale: 1.3;
+    top: 1vh;}
 
-#star .form-check {
-    position: initial;
-
-}
-
-
-.favorite:checked + label {
+.fa-star-active {
     opacity: 1;
     color: $favorites;
     svg path {
