@@ -1,8 +1,11 @@
+<div class="d-none" id="index"></div>
+
   <div class="itineraries--info" style="height:70vh;">
     <div class="container">
       <div class="itineraries--summary d-flex flex-column mb-4">
         <div class="summary--departure d-inline-flex align-items-center">
             <% @itineraries_fav.each_with_index do |itinerary, i| %>
+
               <div style='margin:5vh 0'>
                 <%= link_to itinerary_path(itinerary) do %>
                     <div class="trip-option">
