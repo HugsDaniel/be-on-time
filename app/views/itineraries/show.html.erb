@@ -1,3 +1,9 @@
+<div class="d-none itineraryCoordinates" data-id="<%= @itinerary.id %>" data-coordinates="<%= @itinerary.route %>" data-colour="<%= @itinerary.colour %>"></div>
+<div class="d-none" id="show"></div>
+<div clas="d-none" id="routeGeo" data-route="<%= @route_geo.to_json %>"></div>
+<div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
+
+
 <div class="bus-info">
     <div class="status-container">
     <%= simple_form_for @bus do |f| %>
@@ -17,15 +23,19 @@
     <% end %>
         </div>
     </div>
-
 </div>
 
-<div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
-<div clas="d-none" id="bus-img" data-url="<%= @image_url %>"></div>
+
+<div id="info-btn" style="bottom: 21.265vh;" class="profile d-none">
+  <div class="info" id="i">i</div>
+  <div class="info" id="x"><i class="fas fa-times"></i></div>
+</div>
 
 
-
-   <div class="exit-btn"> <%= image_tag("exit.svg")%> </div>
+<div>
+  <%= link_to itineraries_path do %>
+   <div class="home-btn"> <%= image_tag("home.svg",class: "home-logo")%> </div>
+  <% end %>
 
   <div class="intinerary-infos">
     <div class="line-logo-big">
@@ -38,7 +48,7 @@
       <span class="direction">
       Direction
       </span>
-      <%= @direction%>
+      <%= @direction %>
     </div>
 
   <div class="container">
@@ -49,12 +59,18 @@
             <%= image_tag("bus.svg")%>
            <div class="bus-arrival">Le bus sera là dans <span class="bus-arrival"><%= trip_time(@itinerary.arrival_time) %></span> min.</div>
           </div>
+
           <div class="right-info" id="bus-status-container">
             <%= render "buses/status", bus: @bus, image_garbage: @image_garbage, image_thief: @image_thief, image_speaker: @image_speaker, image_nose: @image_nose, image_people: @image_people, image_agent: @image_agent %>
           </div>
         </div>
 
-     <%= link_to trip_path(@itinerary) do %>
+     <%#= link_to trip_path(@itinerary) do %>
+      <a href="#" id="startTrip">
         <div class="mt-3 btn btn-primary btn-block btn-fade">Je suis dans le bus</div>
+      </a>
+      <%= link_to trips_arrived_path, id: "endTrip", class: "d-none" do %>
+        <div class="mt-3 btn btn-primary btn-block btn-fade">Je suis arrivé</div>
       <% end %>
+      <%# end %>
     </div>
