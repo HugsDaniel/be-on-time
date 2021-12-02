@@ -264,6 +264,10 @@ const initShowMapbox = () => {
         startBtn.classList.add("d-none")
         const endBtn = document.getElementById("endTrip")
         endBtn.classList.remove("d-none")
+        const timeBus = document.getElementById("time-bus")
+        timeBus.classList.add("d-none")
+        const timeArrive = document.getElementById("time-arrive")
+        timeArrive.classList.remove("d-none")
 
         document.getElementById("info-btn").classList.remove("d-none")
         map.getSource(`route`).setData(turf.featureCollection([]));

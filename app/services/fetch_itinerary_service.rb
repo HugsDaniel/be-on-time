@@ -48,6 +48,7 @@ class FetchItineraryService
 
       next if Time.parse(passaged['fields']['arrivee']) > Time.parse(passagea['fields']['arrivee'])
       next if Time.parse(passaged["fields"]["arrivee"]).localtime("+01:00") < Time.now
+      next if passaged["fields"]["idbus"].nil?
 
       # puts "Looking for Eric"
 
