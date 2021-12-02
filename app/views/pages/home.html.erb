@@ -11,14 +11,13 @@
   <% end %>
 </div>
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1532303611569-61986f21b89c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=906&q=80);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1532303611569-61986f21b89c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=906&q=80);">
   <div class="container">
 
     <h1>Be on Time</h1>
-    <p>Ne vous stressez plus pour votre voyage en bus de tous les jours, <br>
-      Bot est là pour changer votre vie.</p>
+    <p>Ne stressez plus pour vos voyages quotidiens, Bot va vous changer la vie.</p>
     <div class="d-flex">
-      
+
     <% if current_user %>
       <%= link_to "Nouvel itinéraire", itineraries_path, class: "sign-up" %>
     <% else %>
@@ -33,45 +32,45 @@
   <h1>Comment ça marche ?</h1>
   <div class="card-step">
     <%=image_tag("illustration-1.png")%>
-    <p>Remplissez point de départ et d’arrivée pour créer un nouvel itinéaire</p>
+    <p>Indiquez votre point de départ et d’arrivée pour générer <strong>l'itinéaire le plus rapide</strong></p>
   </div>
   <div class="card-step">
     <%=image_tag("illustration-2.png")%>
-    <p>Choisissez l’option qui vous convient et suivez en temps réel la position et le status du bus</p>
+    <p>Selectionnez l’option de trajet qui vous convient le mieux et suivez le bus et son statut <strong> en temps réel</strong></p>
   </div>
   <div class="card-step">
     <%=image_tag("illustration-3.png")%>
-    <p>Collaborez avec la communauté sur le statut du bus en temps réel</p>
+    <p>Collaborez avec <strong>la communauté</strong> pour actualiser le statut de votre bus en temps réel</p>
 
   </div>
 </div>
 
 <div class="container-infos">
-  <h1>Collabore avec la communauté pour renseigner les infos du bus</h1>
-  <div class="card-info left">
-    <%=image_tag("dirty.png")%>
-    <p>Le bus est sale ?</p>
-  </div>
-   <div class="card-info right">
-    <p>Il y a trop de bruit ?</p>
-    <%=image_tag("noisy.png")%>
-  </div>
-  <div class="card-info left">
-    <%=image_tag("insecure.png")%>
-    <p>Sensation d'insécurité ?</p>
-  </div>
-   <div class="card-info right">
-    <p>Le bus est plein ?</p>
-    <%=image_tag("crowded.png")%>
-  </div>
-  <div class="card-info left">
-    <%=image_tag("controller.png")%>
-    <p>Contrôle en cours ?</p>
-  </div>
-   <div class="card-info right">
-    <p>Mauvaise odeur ?</p>
-    <%=image_tag("smell.png")%>
-  </div>
+  <h1>Collabore avec la communauté pour les tenir informer sur le statut du bus</h1>
+    <div class="card-info left">
+      <%=image_tag("crowded.png")%>
+      <p>Le bus est plein ?</p>
+    </div>
+    <div class="card-info right">
+      <p>Le bus est sale ?</p>
+      <%=image_tag("dirty.png")%>
+    </div>
+    <div class="card-info left">
+      <%=image_tag("noisy.png")%>
+      <p>Trop de bruit ?</p>
+    </div>
+    <div class="card-info right">
+      <p>Mauvaise odeur ?</p>
+      <%=image_tag("smell.png")%>
+    </div>
+    <div class="card-info left">
+      <%=image_tag("controller.png")%>
+      <p>Contrôle en cours ?</p>
+    </div>
+    <div class="card-info right">
+      <p>Sensation d'insécurité ?</p>
+      <%=image_tag("insecure.png")%>
+    </div>
 </div>
 
 <div class="footer">
