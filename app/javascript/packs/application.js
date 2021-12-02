@@ -31,7 +31,7 @@ import { toggleMenu } from '../components/menu';
 import { changeStatus } from '../components/change_info_status';
 import { gsap } from "gsap";
 import { checkAnimation } from '../animations/checkmark';
-import { loadingPage } from '../animations/loading';
+// import { loadingPage } from '../animations/loading';
 
 
 
@@ -48,7 +48,7 @@ document.addEventListener('turbolinks:load', () => {
   toggleMenu();
   changeStatus();
   panelTrigger();
-  loadingPage();
+  // loadingPage();
   initAutocomplete();
   checkAnimation();
   updateTime();
