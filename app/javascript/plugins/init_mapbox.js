@@ -98,6 +98,10 @@ const animatePointAlongLine = (map, routeGeoJSON, followCam = false) => {
     }
 
     counter = counter + 1;
+
+
+    // TODO remove previous point on course
+
   }
 
   // Start the animation
