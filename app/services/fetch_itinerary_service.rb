@@ -44,6 +44,7 @@ class FetchItineraryService
 
       next if Time.parse(passaged['fields']['arrivee']) > Time.parse(passagea['fields']['arrivee'])
       next if Time.parse(passaged["fields"]["arrivee"]).localtime("+01:00") < Time.now
+      next if passaged["fields"]["idbus"].nil?
 
       url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-circulation-passages-tr&q=&rows=-1&sort=-arrivee&refine.idcourse=#{passagea['fields']['idcourse']}&apikey=75c8827dffd58d7e41b4b42de99ef7de9603f4f8cb28cf4bc9746306"
       passage_serialized = URI.parse(url).open.read
