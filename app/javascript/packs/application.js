@@ -31,7 +31,9 @@ import { toggleMenu } from '../components/menu';
 import { changeStatus } from '../components/change_info_status';
 import { gsap } from "gsap";
 import { checkAnimation } from '../animations/checkmark';
+import { addFavorites } from '../components/fav';
 // import { loadingPage } from '../animations/loading';
+
 
 
 
@@ -43,12 +45,13 @@ import { updateTime } from '../components/bus_arrival';
 // import { panelTrigger } from '../animations/panel';
 
 document.addEventListener('turbolinks:load', () => {
+
+  addFavorites();
   initIndexMapbox();
   initShowMapbox();
   toggleInfo();
   toggleMenu();
   changeStatus();
-  // panelTrigger();
   // loadingPage();
   initAutocomplete();
   checkAnimation();

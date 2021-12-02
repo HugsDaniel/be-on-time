@@ -48,7 +48,14 @@
       <span class="direction">
       Direction
       </span>
-      <%= @direction %>
+
+      <%= @direction%>
+      <div id="star">
+      <%= simple_form_for @itinerary do |f| %>
+        <%= f.input  :favorite, label: '<i class="fas fa-star"></i>'.html_safe, input_html: {class: 'favorite', checked: @itinerary.favorite} %>
+      <% end %>
+      </div>
+    
     </div>
 
   <div class="container">

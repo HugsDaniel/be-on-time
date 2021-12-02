@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'buses/show'
   get 'itineraries/index'
   get 'itineraries/show'
+  post 'itineraries/favorites'
   get 'itineraries/favorites'
   devise_for :users
   root to: 'pages#home'
