@@ -45,7 +45,6 @@ document.addEventListener('turbolinks:load', () => {
   toggleInfo();
   toggleMenu();
   changeStatus();
-  panelTrigger();
   initAutocomplete();
   checkAnimation();
   updateTime();
