@@ -1,9 +1,9 @@
 <style>
-  body {
-      position: fixed;
-      height: 100%;
-      width: 100%;
-  }
+    body {
+      position:fixed;
+      height:100%;
+      width:100%;
+    }
 </style>
 
 <div class="d-none" id="coordinates" data-coordinates="<%= @route %>"></div>
@@ -100,9 +100,11 @@
     </div>
   </div>
 <% else %>
-  <div class="bookmark">
-    <div class="star"><i class="fas fa-star"></i></div>
-  </div>
+  <%= link_to itineraries_favorites_path do  %>
+    <div class="bookmark">
+      <div class="star"><i class="fas fa-star"></i></div>
+    </div>
+  <% end %>
   <div class="profile profile-logo">
     <%= image_tag("single-man-circle.svg", style: "scale:1.2;") %>
     <div class="menu-main">

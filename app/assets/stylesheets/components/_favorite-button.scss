@@ -1,0 +1,35 @@
+.favorite + label{
+    svg {
+        height: 5vh;
+    }
+    svg path {
+        fill:$primary;
+    }
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.3;
+    position: absolute;
+    right: 30px;
+}
+
+.form-check-input {
+    opacity:0;
+}
+
+#star .form-check {
+    position: initial;
+
+}
+
+
+.favorite:checked + label {
+    opacity: 1;
+    color: $favorites;
+    svg path {
+        fill:$favorites;
+    }
+}
+
+.favorite input[type="checkbox"]:checked + label[type="checkbox"]::before {
+    display: none;
+  }

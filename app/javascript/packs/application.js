@@ -31,6 +31,8 @@ import { toggleMenu } from '../components/menu';
 import { changeStatus } from '../components/change_info_status';
 import { gsap } from "gsap";
 import { checkAnimation } from '../animations/checkmark';
+import { addFavorites } from '../components/fav';
+
 
 
 
@@ -41,6 +43,7 @@ import { updateTime } from '../components/bus_arrival';
 import { panelTrigger } from '../animations/panel';
 
 document.addEventListener('turbolinks:load', () => {
+  addFavorites();
   initMapbox();
   toggleInfo();
   toggleMenu();
