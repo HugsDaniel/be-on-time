@@ -3,8 +3,8 @@ const updateTime = () => {
   if (times.length > 0) {
     times.forEach((time) => {
       setInterval(async () => {
-        if (time.innerrHTML > 0) time.innerHTML -= 1
-      }, 6000)
+        if (time.innerHTML > 0) time.innerHTML -= 1
+      }, 60000)
     })
   }
 }

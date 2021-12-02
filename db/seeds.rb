@@ -131,8 +131,6 @@ buses.each do |bus|
     star_line_id: bus['fields']['idligne'].to_i,
     star_direction_code: bus['fields']['sens'].to_i
   )
-  # new_bus.route = Route.find_by(star_line_id: bus['fields']['idligne'], arrival_stop: bus['fields']['destination'])
-  # new_bus.line = Line.find_by(star_line_id: bus['fields']['idligne'])
   new_bus.save!
 end
 puts "Done !"

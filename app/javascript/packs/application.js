@@ -32,22 +32,27 @@ import { changeStatus } from '../components/change_info_status';
 import { gsap } from "gsap";
 import { checkAnimation } from '../animations/checkmark';
 import { addFavorites } from '../components/fav';
+// import { loadingPage } from '../animations/loading';
 
 
 
 
-import { initMapbox } from '../plugins/init_mapbox';
+
+import { initIndexMapbox, initShowMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { updateTime } from '../components/bus_arrival';
 
-import { panelTrigger } from '../animations/panel';
+// import { panelTrigger } from '../animations/panel';
 
 document.addEventListener('turbolinks:load', () => {
+
   addFavorites();
-  initMapbox();
+  initIndexMapbox();
+  initShowMapbox();
   toggleInfo();
   toggleMenu();
   changeStatus();
+  // loadingPage();
   initAutocomplete();
   checkAnimation();
   updateTime();
