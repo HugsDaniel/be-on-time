@@ -1,12 +1,13 @@
 <style>
-  body {
-      position: fixed;
-      height: 100%;
-      width: 100%;
-  }
+    body {
+      position:fixed;
+      height:100%;
+      width:100%;
+    }
 </style>
 
-<div class="d-none" id="coordinates" data-coordinates="<%= @route %>"></div>
+<div class="d-none" id="index"></div>
+
 <div>
   <div class="container">
     <%= form_tag itineraries_path, method: :get, html: { class: 'itineraries' }  do %>
@@ -52,6 +53,7 @@
 
 
       <% @itineraries.each_with_index do |itinerary, index| %>
+        <div class="d-none itineraryCoordinates" data-id="<%= itinerary.id %>" data-coordinates="<%= itinerary.route %>" data-colour="<%= itinerary.colour %>"></div>
         <%= link_to itinerary_path(itinerary) do %>
           <div class="trip-option">
             <div class="trip-title">
@@ -72,7 +74,7 @@
               <% itinerary.itinerary_buses.each_with_index do |iti_bus, index| %>
                 <div class="trip-logos">
                   <div class="trip-step">
-                    <div class="btn-line-sm" style=" color: black; background-color:<%= @colours[index] %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;">
+                    <div class="btn-line-sm" style=" color: black; background-color:<%= itinerary.colour %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;">
                       <span class="shortName"><%= iti_bus.bus.star_line_short_name %></span>
                     </div>
                     <div class="line"></div>
@@ -100,9 +102,11 @@
     </div>
   </div>
 <% else %>
-  <div class="bookmark">
-    <div class="star"><i class="fas fa-star"></i></div>
-  </div>
+  <%= link_to itineraries_favorites_path do  %>
+    <div class="bookmark">
+      <div class="star"><i class="fas fa-star"></i></div>
+    </div>
+  <% end %>
   <div class="profile profile-logo">
     <%= image_tag("single-man-circle.svg", style: "scale:1.2;") %>
     <div class="menu-main">

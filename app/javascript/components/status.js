@@ -14,12 +14,15 @@ const toggleInfo = () => {
         });
 
         const button = document.getElementById("info-btn");
-        button.addEventListener("click", (event) => {
-            animation.restart();
 
-            busInfo.classList.toggle("info-active");
-            button.classList.toggle("cross-active");
-        })
+        if (button) {
+          button.addEventListener("click", (event) => {
+              animation.restart();
+
+              busInfo.classList.toggle("info-active");
+              button.classList.toggle("cross-active");
+          })
+        }
     }
 }
 

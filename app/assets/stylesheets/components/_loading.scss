@@ -1,0 +1,18 @@
+.loading-background {
+    height: 100%;
+    width:100%;
+    position: fixed;
+    background-color: white;
+    z-index: 1000;
+    svg {
+        scale: 2;
+        path {
+           stroke: $primary;
+        }
+    }
+}
+
+.loader {
+    position: relative;
+    left: -80px;
+}
