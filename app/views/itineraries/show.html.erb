@@ -1,10 +1,12 @@
-
-<div >
-      <%= link_to itineraries_path do %>
-       <div class="home-btn"> <%= image_tag("home.svg",class: "home-logo")%> </div>
-      <% end %>
+<div class="d-none itineraryCoordinates" data-id="<%= @itinerary.id %>" data-coordinates="<%= @itinerary.route %>" data-colour="<%= @itinerary.colour %>"></div>
+<div class="d-none" id="show"></div>
+<div clas="d-none" id="routeGeo" data-route="<%= @route_geo.to_json %>"></div>
 
 
+<div>
+  <%= link_to itineraries_path do %>
+   <div class="home-btn"> <%= image_tag("home.svg",class: "home-logo")%> </div>
+  <% end %>
 
   <div class="intinerary-infos itinerary-collapse">
     <div class="line-logo-big">
@@ -18,7 +20,7 @@
       <span class="direction">
       Direction
       </span>
-      <%= @direction%>
+      <%= @direction %>
     </div>
 
   <div class="container">
@@ -39,7 +41,6 @@
                 <%= @image_agent.html_safe if @bus.agent%>
                 </div>
               <div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
-              <div clas="d-none" id="bus-img" data-url="<%= @image_url %>"></div>
           </div>
         </div>
       <%= link_to trip_path(@itinerary) do %>

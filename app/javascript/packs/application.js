@@ -34,14 +34,15 @@ import { checkAnimation } from '../animations/checkmark';
 
 
 
-import { initMapbox } from '../plugins/init_mapbox';
+import { initIndexMapbox, initShowMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { updateTime } from '../components/bus_arrival';
 
 import { panelTrigger } from '../animations/panel';
 
 document.addEventListener('turbolinks:load', () => {
-  initMapbox();
+  initIndexMapbox();
+  initShowMapbox();
   toggleInfo();
   toggleMenu();
   changeStatus();
