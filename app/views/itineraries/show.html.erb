@@ -1,6 +1,35 @@
 <div class="d-none itineraryCoordinates" data-id="<%= @itinerary.id %>" data-coordinates="<%= @itinerary.route %>" data-colour="<%= @itinerary.colour %>"></div>
 <div class="d-none" id="show"></div>
 <div clas="d-none" id="routeGeo" data-route="<%= @route_geo.to_json %>"></div>
+<div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
+
+
+<div class="bus-info">
+    <div class="status-container">
+    <%= simple_form_for @bus do |f| %>
+
+        <div class="status-ligne">
+             <%= f.input  :cleanliness_level, label: @image_garbage.html_safe , input_html: {class: 'bus-status bus-status-invisible',checked: @bus.cleanliness_level} %>
+             <%= f.input  :safetiness, label: @image_thief.html_safe , input_html: {class: 'bus-status bus-status-invisible',checked: @bus.safetiness} %>
+
+        </div>
+        <div class="status-ligne">
+             <%= f.input  :noise_level, label: @image_speaker.html_safe, input_html: {class: 'bus-status bus-status-invisible',checked: @bus.noise_level} %>
+             <%= f.input  :bad_smell_level, label: @image_nose.html_safe, input_html: {class: 'bus-status bus-status-invisible', checked: @bus.bad_smell_level} %>
+        </div>
+        <div class="status-ligne">
+             <%= f.input  :crowd_level, label: @image_people.html_safe, input_html: {class: 'bus-status bus-status-invisible',checked: @bus.crowd_level} %>
+             <%= f.input  :agent, label: @image_agent.html_safe, input_html: {class: 'bus-status bus-status-invisible',checked: @bus.agent} %>
+    <% end %>
+        </div>
+    </div>
+</div>
+
+
+<div id="info-btn" style="bottom: 21.265vh;" class="profile d-none">
+  <div class="info" id="i">i</div>
+  <div class="info" id="x"><i class="fas fa-times"></i></div>
+</div>
 
 
 <div>
@@ -8,12 +37,11 @@
    <div class="home-btn"> <%= image_tag("home.svg",class: "home-logo")%> </div>
   <% end %>
 
-  <div class="intinerary-infos itinerary-collapse">
+  <div class="intinerary-infos">
     <div class="line-logo-big">
 
       <div class="btn-line-big" style="background-color:<%= @colour_line %>; font-size:<%= 64 / @star_short_name.length%>px;"> <%= @star_short_name %></div>
 
-      <div class="btn-expand btn-rotate"> <%= image_tag("expand.svg")%> </div>
     </div>
 
     <div class="direction-terminus">
@@ -25,54 +53,24 @@
 
   <div class="container">
       <%# Bloc à loop %>
-      <div class="bus-infos">
+      <div class="bus-infos" style="margin-top:0;">
         <div class="d-flex justify-content-between">
           <div class="left-info">
             <%= image_tag("bus.svg")%>
-            <span class="bus-to-stop">prochain bus : <span class="bus-arrival"><%= arrives_after(@iti_bus.departing_time) %></span> min.</span>
+           <div class="bus-arrival">Le bus sera là dans <span class="bus-arrival"><%= trip_time(@itinerary.arrival_time) %></span> min.</div>
           </div>
-          <div class="right-info">
-              <div class="status-svg">
-                <%= @image_garbage.html_safe if (@bus.cleanliness_level)%>
-                <%= @image_thief.html_safe if @bus.safetiness%>
-                <%= @image_speaker.html_safe if @bus.noise_level%>
-                <%= @image_nose.html_safe if @bus.bad_smell_level%>
-                <%= @image_people.html_safe if  @bus.crowd_level%>
-                <%= @image_agent.html_safe if @bus.agent%>
-                </div>
-              <div clas="d-none" id="bus-id" data-id="<%= @bus.star_bus_id %>"></div>
+
+          <div class="right-info" id="bus-status-container">
+            <%= render "buses/status", bus: @bus, image_garbage: @image_garbage, image_thief: @image_thief, image_speaker: @image_speaker, image_nose: @image_nose, image_people: @image_people, image_agent: @image_agent %>
           </div>
         </div>
-      <%= link_to trip_path(@itinerary) do %>
+
+     <%#= link_to trip_path(@itinerary) do %>
+      <a href="#" id="startTrip">
         <div class="mt-3 btn btn-primary btn-block btn-fade">Je suis dans le bus</div>
+      </a>
+      <%= link_to trips_arrived_path, id: "endTrip", class: "d-none" do %>
+        <div class="mt-3 btn btn-primary btn-block btn-fade">Je suis arrivé</div>
       <% end %>
+      <%# end %>
     </div>
-    <%# End %>
-
-    <div class="bus-infos d-flex">
-      <div class="left-info">
-        <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">bus suivant dans : 15 min.</span>
-      </div>
-      <div class="right-info">
-        <div class="bus-status">
-          <%= image_tag("noise.svg")%>
-          <%= image_tag("smell.svg")%>
-        </div>
-      </div>
-    </div>
-
-    <div class="bus-infos d-flex">
-      <div class="left-info">
-        <%= image_tag("bus.svg")%>
-        <span class="bus-to-stop">bus suivant dans : 20 min.</span>
-      </div>
-      <div class="right-info">
-        <div class="bus-status">
-          <%= image_tag("agent.svg")%>
-          <%= image_tag("noise.svg")%>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

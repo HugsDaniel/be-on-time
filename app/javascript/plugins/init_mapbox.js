@@ -253,6 +253,12 @@ const initShowMapbox = () => {
           }
         });
 
+        const startBtn = document.getElementById("startTrip")
+        startBtn.classList.add("d-none")
+        const endBtn = document.getElementById("endTrip")
+        endBtn.classList.remove("d-none")
+
+        document.getElementById("info-btn").classList.remove("d-none")
         map.getSource(`route`).setData(turf.featureCollection([]));
         animatePointAlongLine(map, routeGeoJSON, true)
       })
