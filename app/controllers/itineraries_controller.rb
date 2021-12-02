@@ -114,6 +114,17 @@ class ItinerariesController < ApplicationController
 
   end
 
+  def mark_as_favorite
+    @itinerary = Itinerary.find(params[:id])
+    @itinerary.favorite = !@itinerary.favorite
+    @itinerary.save
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "itineraries/favorite", locals: { itinerary: @itinerary }, formats: [:html] }
+    end
+  end
+
   def favorites
     @itineraries_fav = Itinerary.where(favorite: true).to_a
 
