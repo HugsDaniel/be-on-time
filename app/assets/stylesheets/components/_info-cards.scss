@@ -8,7 +8,7 @@
 }
 
 .bus-info {
-    transition: ".bus-status" 0.2s; 
+    transition: ".bus-status" 0.2s;
     visibility: hidden;
     padding-top: 15vh;
 }
@@ -29,7 +29,11 @@
 .bus-status {
     //opacity: 1;
     transform: scale(0);
-    
+
+}
+
+.bus-arrival {
+  color: $grey;
 }
 
 .form-check-label {
@@ -51,14 +55,14 @@
     box-shadow: #47b2ff2c 0px 8px 24px;
     // bottom: 2.2650056625141564vh;
     // right: 4.8vw;
-    
+
     border-radius: 50%;
     background-color: white;
     width: 10vh;
     height: 10vh;
     cursor: pointer;
-    margin: 1rem; 
-    z-index: 10;  
+    margin: 1rem;
+    z-index: 10;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -123,12 +127,11 @@
 
 @for $i from 1 through 3 {
      .status-ligne {
-      
-      // :nth-child(1-9) 
+
+      // :nth-child(1-9)
       &:nth-child(#{$i}) {
         // Delay the animation. Delay increases as items loop.
         animation-delay: $i * (1s );
     }
   }
 }
-
