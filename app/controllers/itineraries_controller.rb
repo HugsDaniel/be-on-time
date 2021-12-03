@@ -4,8 +4,8 @@ class ItinerariesController < ApplicationController
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
 
-      @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",500"
-      @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",500"
+      @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
+      @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
 
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       @colours = []
