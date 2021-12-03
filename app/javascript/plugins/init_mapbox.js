@@ -36,8 +36,9 @@ const initShowMapbox = () => {
       container: 'map',
       style: 'mapbox://styles/stanouuuu/ckwc8mhxk5ha815qnyxryrxb3',
       center: [markers[0].lng, markers[0].lat], // starting position [lng, lat]
-      zoom: 13
+      zoom: 14
     });
+
 
     if (markers && markers.length > 0) {
       markers.forEach((marker) => {
@@ -249,6 +250,8 @@ const initShowMapbox = () => {
         timeBus.classList.add("d-none")
         const timeArrive = document.getElementById("time-arrive")
         timeArrive.classList.remove("d-none")
+        const tripMap = document.getElementById("map")
+        tripMap.style.zIndex = "-1"
 
         document.getElementById("info-btn").classList.remove("d-none")
         map.getSource(`route`).setData(turf.featureCollection([]));
@@ -382,7 +385,7 @@ const initIndexMapbox = () => {
       });
       const bounds = new mapboxgl.LngLatBounds();
       markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
-      map.fitBounds(bounds, { padding: { top: 30, bottom: 310, left: 40, right: 40 }, maxZoom: 16, duration: 0 });
+      map.fitBounds(bounds, { padding: { top: 40, bottom: 290, left: 40, right: 40 }, maxZoom: 16, duration: 0 });
     }
 
     // updateSource(map)
