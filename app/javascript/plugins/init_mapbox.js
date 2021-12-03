@@ -3,112 +3,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import turf from 'turf';
 
 
-const animatePointAlongLine = (map, routeGeoJSON, followCam = false) => {
-  const origin = routeGeoJSON.features[0].geometry.coordinates[0]
-  const destination = routeGeoJSON.features[0].geometry.coordinates[-1]
-  const steps = routeGeoJSON.features[0].geometry.coordinates
-  let counter = 0
+const animatePointAlongLine = (id, map, routeGeoJSON, followCam = false) => {
 
-  const point = {
-    'type': 'FeatureCollection',
-    'features': [
-      {
-        'type': 'Feature',
-        'properties': {},
-        'geometry': {
-          'type': 'Point',
-          'coordinates': origin
-        }
-      }
-    ]
-  };
-
-  const sourceObject = map.getSource('point');
-  const layerObject = map.getLayer('point');
-
-  if (sourceObject && layerObject) {
-    map.removeLayer("point")
-    map.removeSource("point")
-  }
-
-  map.addSource('point', {
-    'type': 'geojson',
-    'data': point
-  });
-
-  map.addLayer({
-    'id': 'point',
-    'source': 'point',
-    'type': 'symbol',
-    'layout': {
-      'icon-image': 'Vectorbus-marker',
-      // 'icon-rotate': ['get', 'bearing'],
-      "icon-size": 0.1,
-      'icon-rotation-alignment': 'viewport',
-      'icon-allow-overlap': true,
-      'icon-ignore-placement': true
-    }
-  });
-
-  const animate = () => {
-    const start =
-      routeGeoJSON.features[0].geometry.coordinates[
-        counter >= steps ? counter - 1 : counter
-      ];
-
-    const end =
-      routeGeoJSON.features[0].geometry.coordinates[
-        counter >= steps ? counter : counter + 1
-      ];
-
-    if (!start || !end) return;
-
-    // Update point geometry to a new position based on counter denoting
-    // the index to access the arc
-    point.features[0].geometry.coordinates =
-      routeGeoJSON.features[0].geometry.coordinates[counter];
-
-    // Calculate the bearing to ensure the icon is rotated to match the routeGeoJSON arc
-    // The bearing is calculated between the current point and the next point, except
-    // at the end of the arc, which uses the previous point and the current point
-    point.features[0].properties.bearing = turf.bearing(
-      turf.point(start),
-      turf.point(end)
-    );
-
-    if (followCam) {
-      let bearing = turf.bearing(turf.point(start), turf.point(end))
-
-      map.flyTo({
-        center: point.features[0].geometry.coordinates,
-        speed: 0.2,
-        curve: 1,
-        easing(t) {
-          return t;
-        }
-      })
-
-    }
-
-    // Update the source with this new data
-    map.getSource('point').setData(point);
-
-    // Request the next frame of animation as long as the end has not been reached
-    if (counter < steps) {
-      requestAnimationFrame(animate);
-    }
-
-    counter = counter + 1;
-
-
-    // TODO remove previous point on course
-
-  }
-
-  // Start the animation
-  setInterval(() => {
-    animate(counter);
-  }, 2000)
 }
 
 const addMarkerToMap = (map, marker) => {
@@ -190,7 +86,91 @@ const initShowMapbox = () => {
       map.getSource(`route`).setData(approachingRouteGeoJSON);
       // A single point that animates along the route.
       // Coordinates are initially set to origin.
-      animatePointAlongLine(map, approachingRouteGeoJSON)
+      const origin = approachingRouteGeoJSON.features[0].geometry.coordinates[0]
+      const destination = approachingRouteGeoJSON.features[0].geometry.coordinates[-1]
+      const steps = approachingRouteGeoJSON.features[0].geometry.coordinates
+      let counter = 0
+
+      const point = {
+        'type': 'FeatureCollection',
+        'features': [
+          {
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+              'type': 'Point',
+              'coordinates': origin
+            }
+          }
+        ]
+      };
+
+      map.addSource(`point-1`, {
+        'type': 'geojson',
+        'data': point
+      });
+
+      map.addLayer({
+        'id': `point-1`,
+        'source': `point-1`,
+        'type': 'symbol',
+        'layout': {
+          'icon-image': 'Vectorbus-marker',
+          // 'icon-rotate': ['get', 'bearing'],
+          "icon-size": 0.1,
+          'icon-rotation-alignment': 'viewport',
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true
+        }
+      });
+
+      const animate = () => {
+        const start =
+          approachingRouteGeoJSON.features[0].geometry.coordinates[
+            counter >= steps ? counter - 1 : counter
+          ];
+
+        const end =
+          approachingRouteGeoJSON.features[0].geometry.coordinates[
+            counter >= steps ? counter : counter + 1
+          ];
+
+        if (!start || !end) return;
+
+        // Update point geometry to a new position based on counter denoting
+        // the index to access the arc
+        point.features[0].geometry.coordinates =
+          approachingRouteGeoJSON.features[0].geometry.coordinates[counter];
+
+        // Calculate the bearing to ensure the icon is rotated to match the routeGeoJSON arc
+        // The bearing is calculated between the current point and the next point, except
+        // at the end of the arc, which uses the previous point and the current point
+        point.features[0].properties.bearing = turf.bearing(
+          turf.point(start),
+          turf.point(end)
+        );
+
+        // Update the source with this new data
+        if (map.getSource(`point-1`)) {
+          map.getSource(`point-1`).setData(point);
+        }
+
+        // Request the next frame of animation as long as the end has not been reached
+        if (counter < steps) {
+          requestAnimationFrame(animate);
+        }
+
+        counter = counter + 1;
+
+
+        // TODO remove previous point on course
+
+      }
+
+      // Start the animation
+      setInterval(() => {
+        animate(counter);
+      }, 2000)
 
 
       const coordinatesContainers = document.querySelectorAll(".itineraryCoordinates")
@@ -272,7 +252,110 @@ const initShowMapbox = () => {
 
         document.getElementById("info-btn").classList.remove("d-none")
         map.getSource(`route`).setData(turf.featureCollection([]));
-        animatePointAlongLine(map, routeGeoJSON, true)
+
+        const origin = routeGeoJSON.features[0].geometry.coordinates[0]
+        const destination = routeGeoJSON.features[0].geometry.coordinates[-1]
+        const steps = routeGeoJSON.features[0].geometry.coordinates
+        let counter = 0
+
+        const point2 = {
+          'type': 'FeatureCollection',
+          'features': [
+            {
+              'type': 'Feature',
+              'properties': {},
+              'geometry': {
+                'type': 'Point',
+                'coordinates': origin
+              }
+            }
+          ]
+        };
+
+        const sourceObject = map.getSource('point-1');
+        const layerObject = map.getLayer('point-1');
+
+        if (sourceObject && layerObject) {
+          map.removeLayer("point-1")
+          map.removeSource("point-1")
+        }
+
+        map.addSource(`point-2`, {
+          'type': 'geojson',
+          'data': point2
+        });
+
+        map.addLayer({
+          'id': `point-2`,
+          'source': `point-2`,
+          'type': 'symbol',
+          'layout': {
+            'icon-image': 'Vectorbus-marker',
+            // 'icon-rotate': ['get', 'bearing'],
+            "icon-size": 0.1,
+            'icon-rotation-alignment': 'viewport',
+            'icon-allow-overlap': true,
+            'icon-ignore-placement': true
+          }
+        });
+
+        const animate = () => {
+          const start =
+            routeGeoJSON.features[0].geometry.coordinates[
+              counter >= steps ? counter - 1 : counter
+            ];
+
+          const end =
+            routeGeoJSON.features[0].geometry.coordinates[
+              counter >= steps ? counter : counter + 1
+            ];
+
+          if (!start || !end) return;
+
+          // Update point geometry to a new position based on counter denoting
+          // the index to access the arc
+          point2.features[0].geometry.coordinates =
+            routeGeoJSON.features[0].geometry.coordinates[counter];
+
+          // Calculate the bearing to ensure the icon is rotated to match the routeGeoJSON arc
+          // The bearing is calculated between the current point and the next point, except
+          // at the end of the arc, which uses the previous point and the current point
+          point2.features[0].properties.bearing = turf.bearing(
+            turf.point(start),
+            turf.point(end)
+          );
+
+          let bearing = turf.bearing(turf.point(start), turf.point(end))
+
+          map.flyTo({
+            center: point2.features[0].geometry.coordinates,
+            speed: 0.2,
+            curve: 1,
+            easing(t) {
+              return t;
+            }
+          })
+
+
+          // Update the source with this new data
+          map.getSource(`point-2`).setData(point2);
+
+          // Request the next frame of animation as long as the end has not been reached
+          if (counter < steps) {
+            requestAnimationFrame(animate);
+          }
+
+          counter = counter + 1;
+
+
+          // TODO remove previous point on course
+
+        }
+
+        // Start the animation
+        setInterval(() => {
+          animate(counter);
+        }, 2000)
       })
     }
   }
