@@ -3,15 +3,15 @@ class ItinerariesController < ApplicationController
     if params[:departure].present? && params[:arrival].present?
       @itinerary = Itinerary.new(starting_point: params[:departure], end_point: params[:arrival])
       @itinerary.user = current_user
-      
-      @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",200"
-      @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
-      
+
+      @departing = Geocoder.coordinates(@itinerary.starting_point).join(",")+",500"
+      @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",500"
+
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       @colours = []
-      
+
       @itineraries = @itineraries_data.map do |iti|
-        
+
         bus = Bus.find_or_create_by!(
           star_bus_id: iti[:bus_id]
         )
@@ -128,14 +128,14 @@ class ItinerariesController < ApplicationController
   def favorites
     @itineraries_fav = Itinerary.where(favorite: true).to_a
 
-    
-    
-    
+
+
+
     @colours =[]
     @itineraries = @itineraries_fav.map.with_index do |itinerary, index|
       @departing = Geocoder.coordinates(itinerary.starting_point).join(",")+",400"
       @arrival = Geocoder.coordinates(itinerary.end_point).join(",")+",400"
-      
+
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
       iti = @itineraries_data.first
       @bus = Bus.find(itinerary.bus_ids[0])
@@ -159,8 +159,8 @@ class ItinerariesController < ApplicationController
         departing_time: iti[:departing_time],
         arrival_time: iti[:arrival_time]
       )
-      
-    end  
+
+    end
   end
 
   private
@@ -181,4 +181,3 @@ class ItinerariesController < ApplicationController
   end
 
 end
-
