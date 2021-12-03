@@ -32,7 +32,7 @@ import { changeStatus } from '../components/change_info_status';
 import { gsap } from "gsap";
 import { checkAnimation } from '../animations/checkmark';
 import { addFavorites } from '../components/fav';
-// import { loadingPage } from '../animations/loading';
+import { loadingPage } from '../animations/loading';
 
 
 
@@ -52,7 +52,7 @@ document.addEventListener('turbolinks:load', () => {
   toggleInfo();
   toggleMenu();
   changeStatus();
-  // loadingPage();
+  loadingPage();
   initAutocomplete();
   checkAnimation();
   updateTime();

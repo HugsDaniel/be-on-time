@@ -168,7 +168,7 @@ print "Creating itineraries"
 itinerary = Itinerary.new(
   starting_point: "2 Square de la Fée Viviane 35000 Rennes",
   end_point: "Republique 35000 Rennes",
-  favorite: true
+  favorite: false
 )
 
 itinerary.user = user
