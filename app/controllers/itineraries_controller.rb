@@ -8,7 +8,6 @@ class ItinerariesController < ApplicationController
       @arrival = Geocoder.coordinates(@itinerary.end_point).join(",")+",200"
 
       @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
-      @colours = []
 
       @itineraries = @itineraries_data.map do |iti|
 
@@ -27,7 +26,6 @@ class ItinerariesController < ApplicationController
           starting_point: iti[:starting_point],
           end_point: iti[:end_point],
           departing_time: iti[:departing_time],
-
           arrival_time: iti[:arrival_time],
           route: iti[:coordinates],
           colour: Line.find_by(star_line_id: bus.star_line_id)&.colour || "#47B1FF"
@@ -127,40 +125,31 @@ class ItinerariesController < ApplicationController
 
   def favorites
     @itineraries_fav = Itinerary.where(favorite: true).to_a
+    # @itineraries = @itineraries_fav.map do |itinerary|
+    #   starting_point = itinerary.route.split(";").first.split(",").map(&:to_f)
+    #   end_point = itinerary.route.split(";").last.split(",").map(&:to_f)
+    #   @departing = Geocoder.coordinates(starting_point).join(",")+",400"
+    #   @arrival = Geocoder.coordinates(end_point).join(",")+",400"
 
+    #   @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
+    #   iti = @itineraries_data.first
+    #   @bus = Bus.find(itinerary.bus_ids[0])
 
+    #   @bus.star_line_short_name = iti[:bus_name]
+    #   itinerary.update(
+    #     user: current_user,
+    #     departing_time: iti[:departing_time],
+    #     arrival_time: iti[:arrival_time]
+    #   )
+    #   itinerary.itinerary_buses.update(
+    #   bus: @bus,
+    #   itinerary: itinerary,
+    #   starting_point: itinerary.starting_point,
+    #   end_point: itinerary.end_point,
+    #   departing_time: iti[:departing_time],
+    #   arrival_time: iti[:arrival_time]
+    # )
 
-
-    @colours =[]
-    @itineraries = @itineraries_fav.map.with_index do |itinerary, index|
-      @departing = Geocoder.coordinates(itinerary.starting_point).join(",")+",400"
-      @arrival = Geocoder.coordinates(itinerary.end_point).join(",")+",400"
-
-      @itineraries_data = FetchItineraryService.new(@departing, @arrival).call
-      iti = @itineraries_data.first
-      @bus = Bus.find(itinerary.bus_ids[0])
-      if Line.where(:star_line_id => @bus.star_line_id).first
-        @colours << Line.find_by(star_line_id: @bus.star_line_id).colour
-      else
-        @colours << "#47B1FF"
-      end
-
-      @bus.star_line_short_name = iti[:bus_name]
-      itinerary.update(
-        user: current_user,
-        departing_time: iti[:departing_time],
-        arrival_time: iti[:arrival_time]
-      )
-      itinerary.itinerary_buses.update(
-        bus: @bus,
-        itinerary: itinerary,
-        starting_point: itinerary.starting_point,
-        end_point: itinerary.end_point,
-        departing_time: iti[:departing_time],
-        arrival_time: iti[:arrival_time]
-      )
-
-    end
   end
 
   private
@@ -176,8 +165,6 @@ class ItinerariesController < ApplicationController
     trip_ser = URI.parse(url).open.read
     trip_data = JSON.parse(trip_ser)
 
-
     return trip_data["trips"].first["geometry"]
   end
-
 end
