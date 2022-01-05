@@ -50,8 +50,6 @@ class FetchItineraryService
       next if Time.parse(passaged["fields"]["arrivee"]).localtime("+01:00") < Time.now
       next if passaged["fields"]["idbus"].nil?
 
-      # puts "Looking for Eric"
-
       {
         idcourse: passagea['fields']['idcourse'],
         bus_id: passagea['fields']['idbus'],
@@ -61,7 +59,7 @@ class FetchItineraryService
         departing_time: passaged['fields']['arrivee'],
         arrival_time: passagea['fields']['arrivee'],
         star_line_id: passagea['fields']['idligne'],
-        star_destination: passagea['fields']['destination'],
+        star_destination: passagea['fields']['destination']
         # coordinates: coordinates.delete_suffix(";")
       }
     end.reject(&:nil?).first(3)
@@ -79,7 +77,7 @@ class FetchItineraryService
       coordinates = ""
       all_stops.each_with_index do |stop, index|
         if (departure_stop_index..arrival_stop_index).to_a.include?(index)
-          coordinates += "#{stop["fields"]["coordonnees"].reverse.join(",")};"
+          coordinates += "#{stop['fields']['coordonnees'].reverse.join(",")};"
         end
       end
 
@@ -87,6 +85,5 @@ class FetchItineraryService
     end
 
     return relevant_pa
-
   end
 end
