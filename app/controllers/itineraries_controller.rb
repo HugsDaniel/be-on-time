@@ -124,7 +124,7 @@ class ItinerariesController < ApplicationController
   end
 
   def favorites
-    @itineraries_fav = Itinerary.where(favorite: true).to_a
+    @itineraries_fav = Itinerary.where(favorite: true, user: :current_user).to_a
     # @itineraries = @itineraries_fav.map do |itinerary|
     #   starting_point = itinerary.route.split(";").first.split(",").map(&:to_f)
     #   end_point = itinerary.route.split(";").last.split(",").map(&:to_f)

@@ -1,50 +1,56 @@
 <div class="d-none" id="index"></div>
 
-<div class="itineraries--info">
+<div class="itineraries--info" style='height:auto'>
   <div class="container">
-    <% @itineraries_fav.each_with_index do |itinerary, i| %>
+    <% if @itineraries_fav.length > 0 %>
+      <% @itineraries_fav.each_with_index do |itinerary, i| %>
 
-      <div style='margin:5vh 0'>
-        <%= link_to itinerary_path(itinerary) do %>
-          <div class="trip-option">
-            <div class="trip-title">
-              <h2>Favori <%= i + 1 %></h2>
+        <div style='margin:5vh 0'>
+          <%= link_to itinerary_path(itinerary) do %>
+            <div class="trip-option">
+              <div class="trip-title">
+                <h2>Favori <%= i + 1 %></h2>
 
-              <div class="bus-status-container">
-                <%= image_tag("smell.svg", class: "#{'active' if itinerary.itinerary_buses.first.bus.bad_smell_level}") %>
-                <%= image_tag("trash.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.cleanliness_level}") %>
-                <%= image_tag("agent.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.agent}") %>
-                <%= image_tag("noise.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.noise_level}") %>
-                <%= image_tag("unsafe.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.safetiness}") %>
-                <%= image_tag("crowded.svg", class: "#{'active' if itinerary.itinerary_buses.first.bus.crowd_level}") %>
-              </div>
-            </div>
-
-            <div class="trip d-flex justify-content-between">
-
-              <% itinerary.itinerary_buses.each do |iti_bus| %>
-                <div class="trip-logos">
-                  <div class="trip-step">
-                    <div class="btn-line-sm" style=" color: black; background-color:<%= itinerary.colour %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;">
-                      <span class="shortName"><%= iti_bus.bus.star_line_short_name %></span>
-                    </div>
-                    <div class="line"></div>
-                    <%= image_tag("end_point.svg")%>
-                  </div>
-
-                  <div class="trip-step-journey-infos">
-                    <div class="trip-departure">
-                      <div class="arret-depart"><%= iti_bus.starting_point %></div>
-                    </div>
-
-                    <div class="trip-ending">
-                      <div class="arret-end"><%= iti_bus.end_point %></div>
-                    </div>
-                  </div>
+                <div class="bus-status-container">
+                  <%= image_tag("smell.svg", class: "#{'active' if itinerary.itinerary_buses.first.bus.bad_smell_level}") %>
+                  <%= image_tag("trash.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.cleanliness_level}") %>
+                  <%= image_tag("agent.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.agent}") %>
+                  <%= image_tag("noise.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.noise_level}") %>
+                  <%= image_tag("unsafe.svg",class: "#{'active' if itinerary.itinerary_buses.first.bus.safetiness}") %>
+                  <%= image_tag("crowded.svg", class: "#{'active' if itinerary.itinerary_buses.first.bus.crowd_level}") %>
                 </div>
-              <% end %>
-            </div>
-        <% end %>
+              </div>
+
+              <div class="trip d-flex justify-content-between">
+
+                <% itinerary.itinerary_buses.each do |iti_bus| %>
+                  <div class="trip-logos">
+                    <div class="trip-step">
+                      <div class="btn-line-sm" style=" color: black; background-color:<%= itinerary.colour %>; font-size:<%= 32 / iti_bus.bus.star_line_short_name.length%>px;">
+                        <span class="shortName"><%= iti_bus.bus.star_line_short_name %></span>
+                      </div>
+                      <div class="line"></div>
+                      <%= image_tag("end_point.svg")%>
+                    </div>
+
+                    <div class="trip-step-journey-infos">
+                      <div class="trip-departure">
+                        <div class="arret-depart"><%= iti_bus.starting_point %></div>
+                      </div>
+
+                      <div class="trip-ending">
+                        <div class="arret-end"><%= iti_bus.end_point %></div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="trip-option">
+        <h2 class="mt-3">Vous n'avez pas encore des trajets favoris! 🧐</h2>
       </div>
     <% end %>
   </div>
